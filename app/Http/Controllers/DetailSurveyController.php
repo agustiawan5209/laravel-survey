@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Request;
+use App\Models\DetailSurvey;
+use App\Http\Requests\StoreDetailSurveyRequest;
+use App\Http\Requests\UpdateDetailSurveyRequest;
 
-class SurveyController extends Controller
+class DetailSurveyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Survey/Index');
+        //
     }
 
     /**
@@ -20,21 +21,21 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Survey/Form');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDetailSurveyRequest $request)
     {
-        return redirect()->route('Survey.success');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(DetailSurvey $detailSurvey)
     {
         //
     }
@@ -42,7 +43,7 @@ class SurveyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request)
+    public function edit(DetailSurvey $detailSurvey)
     {
         //
     }
@@ -50,7 +51,7 @@ class SurveyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(UpdateDetailSurveyRequest $request, DetailSurvey $detailSurvey)
     {
         //
     }
@@ -58,19 +59,8 @@ class SurveyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(DetailSurvey $detailSurvey)
     {
         //
-    }
-
-
-    /**
-     * success
-     *
-     * @return void
-     */
-    public function success()
-    {
-        return Inertia::render('Survey/Success');
     }
 }
