@@ -30,10 +30,10 @@ class RelawanController extends Controller
      */
     public function store()
     {
-        Request::validate([
+        $vali =  Request::validate([
             'nama'=> ['required', 'string', 'max:50'],
             'alamat'=> ['required', 'string', 'max:50'],
-            'no_hp'=> ['required', 'numeric', 'max:15'],
+            'no_hp'=> ['required', 'numeric'],
             'kabupaten'=> ['required', 'string', 'max:50'],
             'kecamatan'=> ['required', 'string', 'max:50'],
             'kelurahan'=> ['required', 'string', 'max:50'],
@@ -41,10 +41,10 @@ class RelawanController extends Controller
         ]);
         $lokasi = LokasiRelawan::where('kabupaten', Request::input('kabupaten'))
         ->where('kecamatan', Request::input('kecamatan'))
-        ->where('keluarahan', Request::input('keluarahan'))
+        ->where('kelurahan', Request::input('kelurahan'))
         ->where('desa', Request::input('desa'))
         ->first();
-        if($lokasi !== null){
+        if($lokasi == null){
             $lokasi = LokasiRelawan::create([
                 'kabupaten'=> Request::input('kabupaten'),
                 'kecamatan'=> Request::input('kecamatan'),

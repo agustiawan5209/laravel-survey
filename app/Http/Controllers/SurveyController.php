@@ -74,7 +74,7 @@ class SurveyController extends Controller
         }
         Survey::create([
             'desa' => $desa,
-            'lokasi_survey' => $survey,
+            'lokasi_survey' => $survey->id,
             'rt_rw' => Request::input('rt_rw'),
             'tps' => Request::input('tps'),
             'nama' => Request::input('nama'),
