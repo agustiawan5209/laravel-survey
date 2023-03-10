@@ -3,14 +3,27 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import Swal from 'sweetalert2';
 import { ref, defineProps } from 'vue';
+import InputError from '@/Components/InputError.vue';
+
+const props = defineProps({
+    lokasi: {
+        type: Object,
+        default: () => ({})
+    },
+
+
+});
 const Form = useForm({
     nama: "",
-    KepalaKeluarga: "",
+    kepala_keluarga: "",
     alamat: "",
     no_hp: "",
     jumlah_memilih: "",
     pertanyaan1: "",
+    textpertanyaan1: '',
     pertanyaan2: "",
+    rt_rw: '',
+    tps: '',
 })
 
 function submit() {
@@ -42,19 +55,16 @@ function submit() {
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Isi Survey</h2>
             <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
                 <li>
-                    Kabupaten :
+                    Kabupaten : {{ props.lokasi.kabupaten }}
                 </li>
                 <li>
-                   Kecamatan :
+                    Kecamatan : {{ props.lokasi.kecamatan }}
                 </li>
                 <li>
-                    Kelurahan/Desa :
+                    Kelurahan/Desa : {{ props.lokasi.kelurahan }}
                 </li>
                 <li>
-                    Dusun   :
-                </li>
-                <li>
-                    RT/RW dan TPS   :
+                    Dusun : {{ props.lokasi.desa }}
                 </li>
             </ul>
 
@@ -69,19 +79,43 @@ function submit() {
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg py-5 px-3">
 
                         <form @submit.prevent="submit">
+                            <div class="mb-6 flex justify-center items-center w-full gap-4">
+                                <div class="w-1/2">
+                                    <label for="nama"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RT/RW</label>
+                                    <input type="text" id="nama" v-model="Form.rt_rw"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="................">
+                                    <InputError :message="Form.errors.rt_rw" />
+                                </div>
+                                <div class="w-1/2">
+                                    <label for="nama"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor
+                                        TPS</label>
+                                    <input type="text" id="nama" v-model="Form.tps"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="................">
+                                    <InputError :message="Form.errors.tps" />
+
+                                </div>
+                            </div>
                             <div class="mb-6">
                                 <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                     Yang Ditemui</label>
                                 <input type="text" id="nama" v-model="Form.nama"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="................">
+                                <InputError :message="Form.errors.nama" />
+
                             </div>
                             <div class="mb-6">
                                 <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                     Kepala Keluarga</label>
-                                <input type="text" id="nama" v-model="Form.KepalaKeluarga"
+                                <input type="text" id="nama" v-model="Form.kepala_keluarga"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="....................">
+                                <InputError :message="Form.errors.kepala_keluarga" />
+
                             </div>
                             <div class="mb-6">
                                 <label for="alamat"
@@ -90,6 +124,8 @@ function submit() {
                                 <input type="text" id="alamat" v-model="Form.alamat"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="....................">
+                                <InputError :message="Form.errors.alamat" />
+
                             </div>
                             <div class="mb-6">
                                 <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
@@ -97,6 +133,8 @@ function submit() {
                                 <input type="tel" id="tel" v-model="Form.no_hp"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="....................">
+                                <InputError :message="Form.errors.no_hp" />
+
                             </div>
                             <div class="mb-6">
                                 <label for="nama"
@@ -105,6 +143,8 @@ function submit() {
                                 <input type="number" id="tel" v-model="Form.jumlah_memilih"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="....................">
+                                <InputError :message="Form.errors.jumlah_memilih" />
+
                             </div>
 
                             <!-- Tanya Jawab -->
@@ -113,6 +153,8 @@ function submit() {
                                 <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">1. Menurut Bapak/Ibu, Kira-kira
                                     apa
                                     masalah yang paling penting di wilayah tinggal bapak/ibu?</h3>
+                                <InputError :message="Form.errors.pertanyaan1" />
+
                                 <ul
                                     class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -175,9 +217,11 @@ function submit() {
                                             <label for="nama"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Masalah
                                                 Lainnya</label>
-                                            <input type="text" id="text" v-model="Form.pertanyaan1"
+                                            <input type="text" id="text" v-model="Form.textpertanyaan1"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="....................">
+                                            <InputError :message="Form.errors.textpertanyaan1" />
+
                                         </div>
                                     </li>
                                 </ul>
@@ -188,6 +232,8 @@ function submit() {
                                     ANDI PALALLOI TABRANG bersama PARTAI NASDEM Menjalankan Program Anak Kampung Membawa
                                     Perubahan Dengan Menjemput Dan Memperjuangkan Suara Aspirasi Masyarakat Ketika Terpilih
                                     Sebagai Anggota DPR-RI?</h3>
+                                <InputError :message="Form.errors.pertanyaan2" />
+
                                 <ul
                                     class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                                     <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -224,7 +270,8 @@ function submit() {
 
                             </div>
                             <button type="submit"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan
+                                Survey</button>
                         </form>
 
                     </div>
@@ -232,5 +279,4 @@ function submit() {
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
-</template>
+</AuthenticatedLayout></template>

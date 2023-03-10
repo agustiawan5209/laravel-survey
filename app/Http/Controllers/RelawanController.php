@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Relawan;
-use App\Http\Requests\StoreRelawanRequest;
-use App\Http\Requests\UpdateRelawanRequest;
+use App\Models\LokasiRelawan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class RelawanController extends Controller
 {
@@ -27,9 +28,39 @@ class RelawanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRelawanRequest $request)
+    public function store()
     {
-        //
+        Request::validate([
+            'nama'=> ['required', 'string', 'max:50'],
+            'alamat'=> ['required', 'string', 'max:50'],
+            'no_hp'=> ['required', 'numeric', 'max:15'],
+            'kabupaten'=> ['required', 'string', 'max:50'],
+            'kecamatan'=> ['required', 'string', 'max:50'],
+            'kelurahan'=> ['required', 'string', 'max:50'],
+            'desa'=> ['required', 'string', 'max:50'],
+        ]);
+        $lokasi = LokasiRelawan::where('kabupaten', Request::input('kabupaten'))
+        ->where('kecamatan', Request::input('kecamatan'))
+        ->where('keluarahan', Request::input('keluarahan'))
+        ->where('desa', Request::input('desa'))
+        ->first();
+        if($lokasi !== null){
+            $lokasi = LokasiRelawan::create([
+                'kabupaten'=> Request::input('kabupaten'),
+                'kecamatan'=> Request::input('kecamatan'),
+                'kelurahan'=> Request::input('kelurahan'),
+                'desa'=> Request::input('desa'),
+            ]);
+        }
+
+        Relawan::create([
+            'nama'=> Request::input('nama'),
+            'lokasi_id'=> $lokasi->id,
+            'alamat'=> Request::input('alamat'),
+            'no_hp'=> Request::input('no_hp'),
+            'user_id'=> Auth::user()->id,
+        ]);
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -51,7 +82,7 @@ class RelawanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRelawanRequest $request, Relawan $relawan)
+    public function update(Request $request, Relawan $relawan)
     {
         //
     }

@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RelawanController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserController;
 
@@ -29,6 +30,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/simpanData', [RelawanController::class, 'store'])->middleware(['auth', 'verified'])->name('Relawan.store');
 
 Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'Survey', 'as' => 'Survey.'], function () {

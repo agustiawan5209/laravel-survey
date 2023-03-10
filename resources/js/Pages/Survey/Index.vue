@@ -2,6 +2,18 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { ref, defineProps } from 'vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+
+const props = defineProps({
+    can: {
+        type: Object,
+        default: () => ({})
+    },
+    survey: {
+        type: Object,
+        default: () => ({})
+    }
+})
 </script>
 
 <template>
@@ -20,7 +32,7 @@ import { ref, defineProps } from 'vue';
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg py-5 px-3">
                         <div class="flex items-center justify-between pb-4">
-                            <div>
+                            <div v-if="can.create">
                                 <Link :href="route('Survey.create')">
                                 <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
                                     class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
@@ -50,159 +62,57 @@ import { ref, defineProps } from 'vue';
                                     <th scope="col" class="p-4">
                                         NO.
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Nama
+                                    <th scope="col" class="px-6 py-3 capitalize">
+                                        Kabupaten/Kota
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Alamat
+                                    <th scope="col" class="px-6 py-3 capitalize">
+                                        Kecamatan
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        NO. HP
+                                    <th scope="col" class="px-6 py-3 capitalize">
+                                        Kelurahan
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Price
+                                    <th scope="col" class="px-6 py-3 capitalize">
+                                        Desa
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 capitalize">
+                                        RT/RW
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 capitalize">
+                                        TPS
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 capitalize">
                                         Action
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr
+                                <tr v-for="item in survey.data" :key="item.id"
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
                                         #
                                     </td>
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple MacBook Pro 17"
+                                        {{ item.kabupaten }}
                                     </th>
                                     <td class="px-6 py-4">
-                                        Silver
+                                        {{ item.kecamatan }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        Laptop
+                                        {{ item.kelurahan }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        $2999
+                                        {{ item.desa }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                        #
-                                    </td>
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Microsoft Surface Pro
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        White
+                                        {{ item.rt_rw }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        Laptop PC
+                                        {{ item.tps }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        $1999
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                        #
-                                    </td>
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Magic Mouse 2
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Black
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Accessories
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $99
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                       #
-                                    </td>
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple Watch
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Silver
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Accessories
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $179
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                       #
-                                    </td>
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        iPad
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Gold
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Tablet
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $699
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td class="w-4 p-4">
-                                       #
-                                    </td>
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        Apple iMac 27"
-                                    </th>
-                                    <td class="px-6 py-4">
-                                        Silver
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        PC Desktop
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $3999
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="#"
-                                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                        <PrimaryButton type="button" class="bg-red-500 hover:bg-red-600 text-white active:bg-red-400 focus:bg-red-700" >Hapus</PrimaryButton>
+                                        <PrimaryButton type="button" class="bg-blue-500 hover:bg-blue-600 text-white active:bg-blue-400 focus:bg-blue-700" >Detail</PrimaryButton>
                                     </td>
                                 </tr>
                             </tbody>
