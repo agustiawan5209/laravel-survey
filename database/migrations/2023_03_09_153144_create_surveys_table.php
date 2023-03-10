@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detail_surveys', function (Blueprint $table) {
+        Schema::create('surveys', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('lokasi_survey')->constrained('lokasi_surveys')->onDelete('cascade');
+            $table->string('desa');
+            $table->string('rt_rw');
+            $table->string('tps');
             $table->string('nama');
             $table->string('kepala_keluarga');
             $table->string('alamat');

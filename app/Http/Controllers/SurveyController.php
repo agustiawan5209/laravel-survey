@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetailSurvey;
-use Inertia\Inertia;
 use App\Models\Survey;
+use Inertia\Inertia;
+use App\Models\LokasiSurvey;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
@@ -16,7 +16,7 @@ class SurveyController extends Controller
     public function index()
     {
         return Inertia::render('Survey/Index', [
-            'survey' => Survey::paginate(10),
+            'survey' => LokasiSurvey::paginate(10),
             'can' => [
                 'create' => Auth::user()->can('DESA create'),
 
@@ -60,24 +60,23 @@ class SurveyController extends Controller
         $kecamatan = Auth::user()->relawan->lokasi->kecamatan;
         $kelurahan = Auth::user()->relawan->lokasi->kelurahan;
         $desa = Auth::user()->relawan->lokasi->desa;
-        $survey = Survey::where('kabupaten', $kabupaten)
+        $survey = LokasiSurvey::where('kabupaten', $kabupaten)
             ->where('kecamatan', $kecamatan)
             ->where('kelurahan', $kelurahan)
-            ->where('desa', $desa)
-            ->where('rt_rw', Request::input('rt_rw'))
-            ->where('tps', Request::input('tps'))
-            ->get();
-        if ($survey->count() < 1) {
-            $survey = Survey::create([
+            ->first();
+        if ($survey == null) {
+            $survey = LokasiSurvey::create([
                 'kabupaten' => $kabupaten,
                 'kecamatan' => $kecamatan,
                 'kelurahan' => $kelurahan,
-                'desa' => $desa,
-                'rt_rw' => Request::input('rt_rw'),
-                'tps' => Request::input('tps'),
+
             ]);
         }
-        DetailSurvey::create([
+        Survey::create([
+            'desa' => $desa,
+            'lokasi_survey' => $survey,
+            'rt_rw' => Request::input('rt_rw'),
+            'tps' => Request::input('tps'),
             'nama' => Request::input('nama'),
             'kepala_keluarga' => Request::input('kepala_keluarga'),
             'alamat' => Request::input('alamat'),

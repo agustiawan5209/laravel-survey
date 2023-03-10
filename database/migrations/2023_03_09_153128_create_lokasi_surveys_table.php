@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('surveys', function (Blueprint $table) {
+        Schema::create('lokasi_surveys', function (Blueprint $table) {
             $table->id();
             $table->string('kabupaten');
             $table->string('kecamatan');
             $table->string('kelurahan');
-            $table->string('desa');
-            $table->string('rt_rw');
-            $table->string('tps');
             $table->timestamps();
         });
     }

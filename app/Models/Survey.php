@@ -9,5 +9,6 @@ class Survey extends Model
 {
     use HasFactory;
     protected $table = 'surveys';
-    protected $fillable = ['kabupaten','kecamatan','kelurahan','desa','rt_rw','tps'];
+    protected $fillable = ['desa','lokasi_survey','rt_rw','tps','nama','kepala_keluarga','alamat','no_hp','jumlah_memilih','pertanyaan1','pertanyaan2'];
+
 }
