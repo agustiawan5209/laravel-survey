@@ -20,4 +20,23 @@ class Survey extends Model
             ->orWhere('nama', 'like', '%' . $search . '%');
         });
     }
+    public function jawaban($value)
+    {
+        $hasil = null;
+        switch ($value) {
+            case 'a':
+                $hasil = "Mendukung";
+                break;
+            case 'b':
+                $hasil = "Tidak Mendukung";
+                break;
+            case 'c':
+                $hasil = "Tidak Tahu";
+                break;
+
+            default:
+                $hasil = "Mendukung";
+                break;
+        }
+    }
 }

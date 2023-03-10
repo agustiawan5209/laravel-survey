@@ -16,7 +16,7 @@ class SurveyController extends Controller
     public function index()
     {
         return Inertia::render('Survey/Index', [
-            'survey' => LokasiSurvey::paginate(10),
+            'survey' => LokasiSurvey::with(['survey'])->paginate(10),
             'can' => [
                 'create' => Auth::user()->can('DESA create'),
 
@@ -92,10 +92,13 @@ class SurveyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-
-        return Inertia::render('Survey/Detail');
+        // dd(Survey::where('lokasi_survey', $id)->get());
+        return Inertia::render('Survey/Show', [
+            'survey'=> Survey::where('lokasi_survey', $id)->get(),
+            'lokasi'=> LokasiSurvey::find($id),
+        ]);
     }
 
     /**

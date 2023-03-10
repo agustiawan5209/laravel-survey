@@ -5,35 +5,24 @@ import { ref, defineProps } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
-    can: {
-        type: Object,
-        default: () => ({})
-    },
     survey: {
         type: Object,
         default: () => ({})
-    }
+    },
+    lokasi: {
+        type: Object,
+        default: () => ({})
+    },
+
 })
 
-function hitungSuaraMendukung(value){
-    var arr = [];
-    for (let i = 0; i < value.length; i++) {
-      if(value[i].pertanyaan2 == 'a'){
-        arr.push(value.pertanyaan2);
-      }
+function jawaban(value){
+    var hasil = null;
+    if(value === 'a') hasil = "Mendukung";
+    if(value === 'b') hasil = "Tidak Mendukung";
+    if(value === 'c') hasil = "Tidak Tahu";
 
-    }
-    return arr.length;
-}
-function hitungSuaraTidakMendukung(value){
-    var arr = [];
-    for (let i = 0; i < value.length; i++) {
-      if(value[i].pertanyaan2 == 'b'){
-        arr.push(value.pertanyaan2);
-      }
-
-    }
-    return arr.length;
+    return hasil;
 }
 </script>
 
@@ -41,7 +30,18 @@ function hitungSuaraTidakMendukung(value){
     <Head title="Survey" />
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $page.props.auth.user.name }}</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Detail Survey</h2>
+            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
+                <li>
+                    Kabupaten : {{ lokasi.kabupaten }}
+                </li>
+                <li>
+                    Kecamatan : {{ lokasi.kecamatan }}
+                </li>
+                <li>
+                    Kelurahan/Desa : {{ lokasi.kelurahan }}
+                </li>
+            </ul>
         </template>
 
         <!-- Content -->
@@ -53,15 +53,7 @@ function hitungSuaraTidakMendukung(value){
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg py-5 px-3">
                         <div class="flex items-center justify-between pb-4">
-                            <div v-if="can.create">
-                                <Link :href="route('Survey.create')">
-                                <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
-                                    class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                                    type="button">
-                                    Tambah
-                                </button>
-                                </Link>
-                            </div>
+
                             <label for="table-search" class="sr-only">Search</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -84,60 +76,49 @@ function hitungSuaraTidakMendukung(value){
                                         NO.
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
-                                        Kabupaten/Kota
+                                       RT/RW.TPS
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
-                                        Kecamatan
+                                        Nama
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
-                                        Kelurahan
+                                        NO.HP
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
-                                        Mendukung
+                                        Kepala Keluarga
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
-                                        Tidak Mendukung
+                                      Alamat
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
-                                        Total Survey
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 capitalize">
-                                        Detail
+                                        Hasil
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in survey.data" :key="item.id"
+                                <tr v-for="(item,index) in survey" :key="item.id" :index="index"
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
-                                        #
+                                        {{ index +1 }}
                                     </td>
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ item.kabupaten }}
+                                        {{ item.rt_rw }}.{{ item.tps }}
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{ item.kecamatan }}
+                                        {{ item.nama }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{ item.kelurahan }}
-                                    </td>
-
-                                    <td class="px-6 py-4">
-                                        {{hitungSuaraMendukung(item.survey)}}
+                                        {{ item.no_hp }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{hitungSuaraTidakMendukung(item.survey)}}
-
-                                    </td>
-
-                                    <td class="px-6 py-4">
-                                        {{ item.survey.length }}
+                                        {{ item.kepala_keluarga }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <Link :href="route('Survey.show', {id : item.id})">
-                                            <PrimaryButton type="button" class="bg-blue-500 hover:bg-blue-600 text-white active:bg-blue-400 focus:bg-blue-700" >Detail</PrimaryButton>
-                                        </Link>
+                                        {{ item.alamat }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ jawaban(item.pertanyaan2) }}
                                     </td>
                                 </tr>
                             </tbody>
