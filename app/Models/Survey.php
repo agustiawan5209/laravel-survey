@@ -11,4 +11,13 @@ class Survey extends Model
     protected $table = 'surveys';
     protected $fillable = ['desa','lokasi_survey','rt_rw','tps','nama','kepala_keluarga','alamat','no_hp','jumlah_memilih','pertanyaan1','pertanyaan2'];
 
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->where('rt_rw', 'like', '%' . $search . '%')
+            ->orWhere('desa', 'like', '%' . $search . '%')
+            ->orWhere('nama', 'like', '%' . $search . '%');
+        });
+    }
 }

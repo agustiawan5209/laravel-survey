@@ -92,8 +92,9 @@ class SurveyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, $id)
+    public function show()
     {
+
         return Inertia::render('Survey/Detail');
     }
 
