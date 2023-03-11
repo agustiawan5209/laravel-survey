@@ -9,7 +9,7 @@ class Survey extends Model
 {
     use HasFactory;
     protected $table = 'surveys';
-    protected $fillable = ['desa','lokasi_survey','rt_rw','tps','nama','kepala_keluarga','alamat','no_hp','jumlah_memilih','pertanyaan1','pertanyaan2'];
+    protected $fillable = ['desa','lokasi_survey','rt_rw','tps','nama','kepala_keluarga','alamat','no_hp','jumlah_memilih','pertanyaan1','pertanyaan2', 'username_user'];
 
 
     public function scopeFilter($query, array $filters)

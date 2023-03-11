@@ -24,7 +24,8 @@ class User extends Authenticatable
         'email',
         'password',
         'lokasi',
-        'jabatan'
+        'jabatan',
+        'datasurvey_id',
     ];
 
     /**
@@ -48,5 +49,8 @@ class User extends Authenticatable
 
     public function relawan(){
         return $this->hasOne(Relawan::class, 'user_id', 'id');
+    }
+    public function datasurvey(){
+        return $this->hasOne(DataSurvey::class, 'id', 'datasurvey_id');
     }
 }

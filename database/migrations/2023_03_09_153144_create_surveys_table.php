@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('jumlah_memilih');
             $table->string('pertanyaan1');
             $table->string('pertanyaan2');
+            $table->string('username_user');
             $table->timestamps();
         });
     }

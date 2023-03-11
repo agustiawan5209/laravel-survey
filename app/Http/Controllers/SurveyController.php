@@ -87,6 +87,7 @@ class SurveyController extends Controller
             'jumlah_memilih' => Request::input('jumlah_memilih'),
             'pertanyaan1' => Request::input('pertanyaan1') == null ? Request::input('textpertanyaan1') : Request::input('pertanyaan1'),
             'pertanyaan2' => Request::input('pertanyaan2'),
+            'username_user'=> Auth::user()->username,
         ]);
 
         return redirect()->route('Survey.success');

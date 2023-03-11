@@ -83,9 +83,9 @@ class KecamatanSeeder extends Seeder
                 "email" => "kecamatan". $i ."@gmail.com",
                 "email_verified_at" => NULL,
                 "password" => bcrypt('12345678'),
-                "remember_token" => NULL,
                 "lokasi"=> $kecamatans[$i]['nama'],
                 "jabatan"=> "Korcab",
+                "remember_token" => NULL,
                 "created_at" => "2023-03-07 21:56:26",
                 "updated_at" => "2023-03-07 21:56:26",
             ));
