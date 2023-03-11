@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
-import { ref, defineProps } from 'vue';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import { ref, defineProps, watch } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
@@ -12,25 +12,37 @@ const props = defineProps({
     survey: {
         type: Object,
         default: () => ({})
-    }
+    },
 })
+const search = ref('');
+const searchForm = useForm({});
 
-function hitungSuaraMendukung(value){
+watch(search, (value) => {
+    searchForm.get(route('Survey.index', {
+        search: value
+    }), {
+        preserveState: true,
+    })
+
+})
+// Fungsi Cari
+
+function hitungSuaraMendukung(value) {
     var arr = [];
     for (let i = 0; i < value.length; i++) {
-      if(value[i].pertanyaan2 == 'a'){
-        arr.push(value.pertanyaan2);
-      }
+        if (value[i].pertanyaan2 == 'a') {
+            arr.push(value.pertanyaan2);
+        }
 
     }
     return arr.length;
 }
-function hitungSuaraTidakMendukung(value){
+function hitungSuaraTidakMendukung(value) {
     var arr = [];
     for (let i = 0; i < value.length; i++) {
-      if(value[i].pertanyaan2 == 'b'){
-        arr.push(value.pertanyaan2);
-      }
+        if (value[i].pertanyaan2 == 'b') {
+            arr.push(value.pertanyaan2);
+        }
 
     }
     return arr.length;
@@ -72,7 +84,7 @@ function hitungSuaraTidakMendukung(value){
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 </div>
-                                <input type="text" id="table-search"
+                                <input type="text" id="table-search" v-model="search"
                                     class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Search for items">
                             </div>
@@ -107,10 +119,10 @@ function hitungSuaraTidakMendukung(value){
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in survey.data" :key="item.id"
+                                <tr v-for="(item, index) in survey.data" :key="item.id" :index="index"
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
-                                        #
+                                        {{ (survey.current_page - 1) * survey.per_page + index + 1 }}
                                     </td>
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -124,10 +136,10 @@ function hitungSuaraTidakMendukung(value){
                                     </td>
 
                                     <td class="px-6 py-4">
-                                        {{hitungSuaraMendukung(item.survey)}}
+                                        {{ hitungSuaraMendukung(item.survey) }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        {{hitungSuaraTidakMendukung(item.survey)}}
+                                        {{ hitungSuaraTidakMendukung(item.survey) }}
 
                                     </td>
 
@@ -135,8 +147,10 @@ function hitungSuaraTidakMendukung(value){
                                         {{ item.survey.length }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <Link :href="route('Survey.show', {id : item.id})">
-                                            <PrimaryButton type="button" class="bg-blue-500 hover:bg-blue-600 text-white active:bg-blue-400 focus:bg-blue-700" >Detail</PrimaryButton>
+                                        <Link :href="route('Survey.show', { id: item.id })">
+                                        <PrimaryButton type="button"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white active:bg-blue-400 focus:bg-blue-700">
+                                            Detail</PrimaryButton>
                                         </Link>
                                     </td>
                                 </tr>

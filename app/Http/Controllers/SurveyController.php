@@ -15,12 +15,15 @@ class SurveyController extends Controller
      */
     public function index()
     {
+        $user = Auth::user()->relawan;
         return Inertia::render('Survey/Index', [
-            'survey' => LokasiSurvey::with(['survey'])->paginate(10),
+            'survey' => LokasiSurvey::with(['survey'])
+            ->filter(Request::only('search'))
+            ->paginate(10),
             'can' => [
                 'create' => Auth::user()->can('DESA create'),
-
-            ]
+            ],
+            'search'=> Request::only('search'),
         ]);
     }
 
