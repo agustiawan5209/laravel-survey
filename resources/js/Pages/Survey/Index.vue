@@ -104,10 +104,10 @@ function hitungSuaraTidakMendukung(value) {
                                     <th scope="col" class="px-6 py-3 capitalize">
                                         Kelurahan
                                     </th>
-                                    <th scope="col" class="px-6 py-3 capitalize">
+                                    <th scope="col" v-if="can.admin" class="px-6 py-3 capitalize">
                                         Mendukung
                                     </th>
-                                    <th scope="col" class="px-6 py-3 capitalize">
+                                    <th scope="col" v-if="can.admin" class="px-6 py-3 capitalize">
                                         Tidak Mendukung
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
@@ -135,10 +135,10 @@ function hitungSuaraTidakMendukung(value) {
                                         {{ item.kelurahan }}
                                     </td>
 
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4" v-if="can.admin">
                                         {{ hitungSuaraMendukung(item.survey) }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4" v-if="can.admin">
                                         {{ hitungSuaraTidakMendukung(item.survey) }}
 
                                     </td>

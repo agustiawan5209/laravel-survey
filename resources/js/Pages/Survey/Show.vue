@@ -13,6 +13,7 @@ const props = defineProps({
         type: Object,
         default: () => ({})
     },
+    can: Object
 
 })
 
@@ -90,13 +91,13 @@ function jawaban(value){
                                     <th scope="col" class="px-6 py-3 capitalize">
                                       Alamat
                                     </th>
-                                    <th scope="col" class="px-6 py-3 capitalize">
+                                    <th scope="col" class="px-6 py-3 capitalize" v-if="can.admin">
                                         Hasil
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(item,index) in survey" :key="item.id" :index="index"
+                                <tr v-for="(item,index) in survey.survey" :key="item.id" :index="index"
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
                                         {{ index +1 }}
@@ -117,7 +118,7 @@ function jawaban(value){
                                     <td class="px-6 py-4">
                                         {{ item.alamat }}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4" v-if="can.admin">
                                         {{ jawaban(item.pertanyaan2) }}
                                     </td>
                                 </tr>

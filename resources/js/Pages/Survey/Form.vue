@@ -61,10 +61,7 @@ function submit() {
                     Kecamatan : {{ props.lokasi.kecamatan }}
                 </li>
                 <li>
-                    Kelurahan/Desa : {{ props.lokasi.kelurahan }}
-                </li>
-                <li>
-                    Dusun : {{ props.lokasi.desa }}
+                    Kelurahan/Desa : {{ props.lokasi.kelurahan_desa }}
                 </li>
             </ul>
 

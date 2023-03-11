@@ -16,14 +16,35 @@ class SurveyController extends Controller
     public function index()
     {
         $user = Auth::user()->relawan;
-        return Inertia::render('Survey/Index', [
-            'survey' => LokasiSurvey::with(['survey'])
+        $survey = LokasiSurvey::with(['survey'])
             ->filter(Request::only('search'))
-            ->paginate(10),
+            ->paginate(10);
+
+        if (Auth::user()->jabatan == "Relawan") {
+            $survey = LokasiSurvey::with(['survey'])
+                ->filter(Request::only('search'))
+                ->where('kelurahan', Auth::user()->datasurvey->kelurahan_desa)
+                ->paginate(10);
+        } else if (Auth::user()->jabatan == "Korcab") {
+            $survey = LokasiSurvey::with(['survey'])
+                ->filter(Request::only('search'))
+                ->where('kecamatan', Auth::user()->lokasi)
+                ->paginate(10);
+        } else if (Auth::user()->jabatan == "Korkab") {
+            $survey = LokasiSurvey::with(['survey'])
+                ->filter(Request::only('search'))
+                ->where('kabupaten', Auth::user()->lokasi)
+                ->paginate(10);
+        }
+        return Inertia::render('Survey/Index', [
+            'survey' => $survey,
             'can' => [
                 'create' => Auth::user()->can('DESA create'),
+                'listkec' => Auth::user()->can('KEC list'),
+                'admin' => Auth::user()->can('Admin list'),
+
             ],
-            'search'=> Request::only('search'),
+            'search' => Request::only('search'),
         ]);
     }
 
@@ -33,7 +54,7 @@ class SurveyController extends Controller
     public function create()
     {
         return Inertia::render('Survey/Form', [
-            'lokasi' => Auth::user()->relawan->lokasi
+            'lokasi' => Auth::user()->datasurvey
         ]);
     }
 
@@ -59,10 +80,10 @@ class SurveyController extends Controller
                 'pertanyaan1' => 'required',
             ]);
         }
-        $kabupaten = Auth::user()->relawan->lokasi->kabupaten;
-        $kecamatan = Auth::user()->relawan->lokasi->kecamatan;
-        $kelurahan = Auth::user()->relawan->lokasi->kelurahan;
-        $desa = Auth::user()->relawan->lokasi->desa;
+        $kabupaten = Auth::user()->datasurvey->kabupaten;
+        $kecamatan = Auth::user()->datasurvey->kecamatan;
+        $kelurahan = Auth::user()->datasurvey->kelurahan_desa;
+        $desa = Auth::user()->datasurvey->kelurahan_desa;
         $survey = LokasiSurvey::where('kabupaten', $kabupaten)
             ->where('kecamatan', $kecamatan)
             ->where('kelurahan', $kelurahan)
@@ -87,7 +108,7 @@ class SurveyController extends Controller
             'jumlah_memilih' => Request::input('jumlah_memilih'),
             'pertanyaan1' => Request::input('pertanyaan1') == null ? Request::input('textpertanyaan1') : Request::input('pertanyaan1'),
             'pertanyaan2' => Request::input('pertanyaan2'),
-            'username_user'=> Auth::user()->username,
+            'username_user' => Auth::user()->username,
         ]);
 
         return redirect()->route('Survey.success');
@@ -99,9 +120,32 @@ class SurveyController extends Controller
     public function show($id)
     {
         // dd(Survey::where('lokasi_survey', $id)->get());
+        $survey = LokasiSurvey::with(['survey'])
+            ->find($id);
+
+        if (Auth::user()->jabatan == "Relawan") {
+            $survey = LokasiSurvey::with(['survey'])
+                ->where('kelurahan', Auth::user()->datasurvey->kelurahan_desa)
+                ->where('username_user', Auth::user()->username)
+                ->find($id);
+        } else if (Auth::user()->jabatan == "Korcab") {
+            $survey = LokasiSurvey::with(['survey'])
+                ->where('kecamatan', Auth::user()->lokasi)
+                ->find($id);
+        } else if (Auth::user()->jabatan == "Korkab") {
+            $survey = LokasiSurvey::with(['survey'])
+                ->where('kabupaten', Auth::user()->lokasi)
+                ->find($id);
+        }
         return Inertia::render('Survey/Show', [
-            'survey'=> Survey::where('lokasi_survey', $id)->get(),
-            'lokasi'=> LokasiSurvey::find($id),
+            'survey' => $survey,
+            'lokasi' => LokasiSurvey::find($id),
+            'can' => [
+                'create' => Auth::user()->can('DESA create'),
+                'listkec' => Auth::user()->can('KEC list'),
+                'admin' => Auth::user()->can('Admin list'),
+
+            ],
         ]);
     }
 

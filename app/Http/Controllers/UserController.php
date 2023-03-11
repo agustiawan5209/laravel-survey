@@ -21,12 +21,17 @@ class UserController extends Controller
 
         if (Auth::user()->can('Admin list')) {
             $modalVar = false;
-        }
-        if (Auth::user()->jabatan == "Relawan") {
-            if (Auth::user()->relawan == null) {
-                $modalVar = true;
-            } else {
-                $modalVar = false;
+        } else {
+            if (Auth::user()->jabatan == "Relawan") {
+                if (Auth::user()->datasurvey == null) {
+                    $modalVar = true;
+                } else {
+                    $modalVar = false;
+                }
+            }else{
+                if(Auth::user()->jabatan === 'Korcab' || Auth::user()->jabatan === 'Korkab'){
+                    $modalVar = false;
+                }
             }
         }
 
