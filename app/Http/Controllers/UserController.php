@@ -19,6 +19,7 @@ class UserController extends Controller
         } else {
             $modalVar = false;
         }
+
         return Inertia::render('Dashboard', [
             'can' => [
                 'edit' => Auth::user()->can('Admin edit'),

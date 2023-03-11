@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('lokasi')->nullable();
+            $table->string('lokasi')->nullable();
+            $table->string('datasurvey_id')->nullable();
+            $table->string('jabatan')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
