@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataSurvey;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Models\Survey;
+use App\Models\DataSurvey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +27,7 @@ class UserController extends Controller
             'user' => Auth::user(),
             'modal' => $modalVar,
             'dataSurvey' => DataSurvey::all(),
+            'survey'=> Survey::all(),
         ]);
     }
 }

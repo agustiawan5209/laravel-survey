@@ -18,6 +18,12 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+
+    survey: {
+        type: Object,
+        default: ()=>({})
+    },
+
 })
 
 const Form = useForm({
@@ -35,6 +41,8 @@ function submit(){
         onError: error => console.log(error)
     });
 }
+
+
 // Buat Bar
 </script>
 
@@ -45,6 +53,12 @@ function submit(){
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ $page.props.auth.user.name }}</h2>
         </template>
+        <div class="md:py-6">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg w-[500px]">
+                <BarVue class="w-96" :data="survey"  />
+            </div>
+        </div>
         <Modal :show="props.modal">
 
            <div class="px-5 py-3">
@@ -117,12 +131,6 @@ function submit(){
            </div>
         </Modal>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                <BarVue class="2-96" />
-            </div>
-        </div>
     </div>
 </AuthenticatedLayout></template>
