@@ -4,10 +4,11 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RelawanController;
-use App\Http\Controllers\SurveyController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\DataSurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,19 @@ Route::middleware(['auth'])->group(function () {
             Route::get('Edit/{id}', 'edit')->name('edit');
             Route::put('Update/{id}', 'update')->name('update');
             Route::get('/Success', 'success')->name('success');
+        });
+    });
+    Route::group(['prefix' => 'DataSurvey', 'as' => 'DataSurvey.'], function () {
+        Route::controller(DataSurveyController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('Buat', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('detail/{id}', 'show')->name('show');
+            Route::delete('delete', 'delete')->name('delete');
+            Route::get('Edit/{id}', 'edit')->name('edit');
+            Route::put('Update/{id}', 'update')->name('update');
+
+
         });
     });
 });

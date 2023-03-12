@@ -96,7 +96,15 @@ function jawaban(value){
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody v-if="survey == null">
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td class="w-4 p-4" colspan="7">
+                                        Data Kosong
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody v-else>
                                 <tr v-for="(item,index) in survey.survey" :key="item.id" :index="index"
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
@@ -123,6 +131,7 @@ function jawaban(value){
                                     </td>
                                 </tr>
                             </tbody>
+
                         </table>
                     </div>
 

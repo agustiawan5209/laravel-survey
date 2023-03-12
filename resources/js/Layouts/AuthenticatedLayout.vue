@@ -9,6 +9,7 @@ import { Link } from '@inertiajs/vue3';
 
 
 const showingNavigationDropdown = ref(false);
+const props = defineProps(['can'])
 </script>
 
 <template>
@@ -31,11 +32,11 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('Survey.index')" :active="route().current('Survey.index')">
-                                    Survey
+                                <NavLink :href="route('DataSurvey.index')" :active="route().current('DataSurvey.index')">
+                                    Data Survey
                                 </NavLink>
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Laporan
+                                <NavLink :href="route('Survey.index')" :active="route().current('Survey.index')">
+                                   Laporan Survey
                                 </NavLink>
                             </div>
                         </div>

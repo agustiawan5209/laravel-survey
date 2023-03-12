@@ -3,31 +3,78 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref, defineProps, watch } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import Pagination from '@/Components/Pagination.vue';
-
+import PaginationVue from "@/Components/Pagination.vue";
+import axios from 'axios';
 const props = defineProps({
     can: {
         type: Object,
         default: () => ({})
     },
-    survey: {
+    data: {
         type: Object,
         default: () => ({})
     },
+    kabupaten: {
+        type: Object,
+        default: () => ({})
+    },
+    kecamatan: {
+        type: Object,
+        default: () => ({})
+    },
+    desa: {
+        type: Object,
+        default: () => ({})
+    },
+
+    filter: {
+        type: Object,
+        default: () => ({})
+    },
+
 })
+console.log(props.filter)
 const search = ref('');
 const searchForm = useForm({});
 
 watch(search, (value) => {
-    searchForm.get(route('Survey.index', {
+    searchForm.get(route('DataSurvey.index', {
         search: value
     }), {
         preserveState: true,
     })
 
 })
-// Fungsi Cari
+// Fungsi Cari DataSurvey
+const CariData = useForm({});
+// {
+//     kabupaten: null,
+//     kecamatan: null,
+//     desa: null,
+// }
+const Kabupaten = ref(props.filter.kabupaten);
+const Kecamatan = ref(props.filter.kecamatan);
+const Desa = ref(props.filter.desa);
 
+watch(Kabupaten, (value) => {
+    CariData.get(route('DataSurvey.index', { kabupaten: value, kecamatan: props.filter.kecamatan, desa: props.filter.desa }), {
+        preserveState: true,
+        preserveScroll: true,
+    })
+
+})
+watch(Kecamatan, (value) => {
+    CariData.get(route('DataSurvey.index', { kabupaten: props.filter.kabupaten, kecamatan: value, desa: props.filter.desa }), {
+        preserveState: true,
+        preserveScroll: true,
+    })
+})
+watch(Desa, (value) => {
+    CariData.get(route('DataSurvey.index', { kabupaten: props.filter.kabupaten, kecamatan: props.filter.kecamatan, desa: value }), {
+        preserveState: true,
+        preserveScroll: true,
+    })
+})
 function hitungSuaraMendukung(value) {
     var arr = [];
     for (let i = 0; i < value.length; i++) {
@@ -66,8 +113,9 @@ function hitungSuaraTidakMendukung(value) {
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg py-5 px-3">
                         <div class="flex items-center justify-between pb-4">
-                            <div v-if="can.create">
-                                <Link :href="route('Survey.create')">
+
+                            <div >
+                                <Link :href="route('DataSurvey.create')">
                                 <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
                                     class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                                     type="button">
@@ -87,7 +135,43 @@ function hitungSuaraTidakMendukung(value) {
                                 </div>
                                 <input type="text" id="table-search" v-model="search"
                                     class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Search for items">
+                                    placeholder="Masukkan Pencarian">
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pb-2">
+                            <div class="flex item-center justify-start">
+                                <div>
+                                    <label for="countries"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
+                                        Kabupaten</label>
+                                    <select id="countries" v-model="Kabupaten"
+                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                                        <option :value="item.nama" v-for="item in kabupaten">{{ item.nama }}</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="countries"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
+                                        Kecamatan</label>
+                                    <select id="countries" v-model="Kecamatan"
+                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                                        <option :value="item.nama" v-for="item in kecamatan">{{ item.nama }}</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="countries"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
+                                        Kelurahan/Desa</label>
+                                    <select id="countries" v-model="Desa"
+                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                                        <option :value="item.nama" v-for="item in desa" class="text-xs">{{ item.nama }}
+                                        </option>
+
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -105,14 +189,8 @@ function hitungSuaraTidakMendukung(value) {
                                     <th scope="col" class="px-6 py-3 capitalize">
                                         Kelurahan
                                     </th>
-                                    <th scope="col" v-if="can.admin" class="px-6 py-3 capitalize">
-                                        Mendukung
-                                    </th>
-                                    <th scope="col" v-if="can.admin" class="px-6 py-3 capitalize">
-                                        Tidak Mendukung
-                                    </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
-                                        Total Survey
+                                        Estimasi
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
                                         Detail
@@ -120,10 +198,10 @@ function hitungSuaraTidakMendukung(value) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(item, index) in survey.data" :key="item.id" :index="index"
+                                <tr v-for="(item, index) in data.data" :key="item.id" :index="index"
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="w-4 p-4">
-                                        {{ (survey.current_page - 1) * survey.per_page + index + 1 }}
+                                        {{ (data.current_page - 1) * data.per_page + index + 1 }}
                                     </td>
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -135,17 +213,8 @@ function hitungSuaraTidakMendukung(value) {
                                     <td class="px-6 py-4">
                                         {{ item.kelurahan_desa }}
                                     </td>
-
-                                    <td class="px-6 py-4" v-if="can.admin">
-                                        {{ hitungSuaraMendukung(item.survey) }}
-                                    </td>
-                                    <td class="px-6 py-4" v-if="can.admin">
-                                        {{ hitungSuaraTidakMendukung(item.survey) }}
-
-                                    </td>
-
                                     <td class="px-6 py-4">
-                                        {{ item.survey.length }}
+                                        {{ item.estimasi }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <Link :href="route('Survey.show', { id: item.id })">
@@ -157,7 +226,8 @@ function hitungSuaraTidakMendukung(value) {
                                 </tr>
                             </tbody>
                         </table>
-                        <Pagination :links="survey.links" />
+                        <PaginationVue :links="data.links" />
+
                     </div>
 
                 </div>

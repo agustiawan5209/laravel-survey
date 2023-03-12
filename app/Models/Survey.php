@@ -39,4 +39,7 @@ class Survey extends Model
                 break;
         }
     }
+    public function lokasiSurvey(){
+        return $this->hasOne(DataSurvey::class, 'lokasi_survey','id');
+    }
 }

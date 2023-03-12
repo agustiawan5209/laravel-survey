@@ -162,6 +162,9 @@ class BasicAdminPermissionSeeder extends Seeder
             "email_verified_at" => NULL,
             "password"=> bcrypt('12345678'),
             "remember_token" => NULL,
+            "jabatan"=> 'Relawan',
+            'lokasi'=> "Gattareng",
+            'datasurvey_id'=> '1',
             "created_at" => "2023-03-07 21:57:19",
             "updated_at" => "2023-03-07 21:57:19",
         ));

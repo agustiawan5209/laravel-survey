@@ -21,7 +21,7 @@ class KabupatenSeeder extends Seeder
 
         $kabupatens = array(
             array(
-                "nama" => "Soppeng",
+                "nama" => "KABUPATEN SOPPENG",
                 "created_at" => NULL,
                 "updated_at" => NULL,
             ),
@@ -38,7 +38,7 @@ class KabupatenSeeder extends Seeder
             "email" => "korcabSoppeng@gmail.com",
             "email_verified_at" => NULL,
             "password" => bcrypt('12345678'),
-            "lokasi" => "Soppeng",
+            "lokasi" => "KABUPATEN SOPPENG",
             "jabatan" => "KorKab",
             "remember_token" => NULL,
             "created_at" => "2023-03-07 21:56:00",

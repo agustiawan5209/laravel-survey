@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Survey;
 use Inertia\Inertia;
-use App\Models\LokasiSurvey;
+use App\Models\DataSurvey;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
@@ -16,22 +16,22 @@ class SurveyController extends Controller
     public function index()
     {
         $user = Auth::user()->relawan;
-        $survey = LokasiSurvey::with(['survey'])
+        $survey = DataSurvey::with(['survey'])
             ->filter(Request::only('search'))
             ->paginate(10);
 
         if (Auth::user()->jabatan == "Relawan") {
-            $survey = LokasiSurvey::with(['survey'])
+            $survey = DataSurvey::with(['survey'])
                 ->filter(Request::only('search'))
-                ->where('kelurahan', Auth::user()->datasurvey->kelurahan_desa)
+                ->where('kelurahan_desa', Auth::user()->datasurvey->kelurahan_desa)
                 ->paginate(10);
         } else if (Auth::user()->jabatan == "Korcab") {
-            $survey = LokasiSurvey::with(['survey'])
+            $survey = DataSurvey::with(['survey'])
                 ->filter(Request::only('search'))
                 ->where('kecamatan', Auth::user()->lokasi)
                 ->paginate(10);
         } else if (Auth::user()->jabatan == "Korkab") {
-            $survey = LokasiSurvey::with(['survey'])
+            $survey = DataSurvey::with(['survey'])
                 ->filter(Request::only('search'))
                 ->where('kabupaten', Auth::user()->lokasi)
                 ->paginate(10);
@@ -84,18 +84,18 @@ class SurveyController extends Controller
         $kecamatan = Auth::user()->datasurvey->kecamatan;
         $kelurahan = Auth::user()->datasurvey->kelurahan_desa;
         $desa = Auth::user()->datasurvey->kelurahan_desa;
-        $survey = LokasiSurvey::where('kabupaten', $kabupaten)
+        $survey = DataSurvey::where('kabupaten', $kabupaten)
             ->where('kecamatan', $kecamatan)
             ->where('kelurahan', $kelurahan)
             ->first();
-        if ($survey == null) {
-            $survey = LokasiSurvey::create([
-                'kabupaten' => $kabupaten,
-                'kecamatan' => $kecamatan,
-                'kelurahan' => $kelurahan,
+        // if ($survey == null) {
+        //     $survey = DataSurvey::create([
+        //         'kabupaten' => $kabupaten,
+        //         'kecamatan' => $kecamatan,
+        //         'kelurahan' => $kelurahan,
 
-            ]);
-        }
+        //     ]);
+        // }
         Survey::create([
             'desa' => $desa,
             'lokasi_survey' => $survey->id,
@@ -120,26 +120,28 @@ class SurveyController extends Controller
     public function show($id)
     {
         // dd(Survey::where('lokasi_survey', $id)->get());
-        $survey = LokasiSurvey::with(['survey'])
+        $survey = DataSurvey::with(['survey'])
             ->find($id);
 
         if (Auth::user()->jabatan == "Relawan") {
-            $survey = LokasiSurvey::with(['survey'])
-                ->where('kelurahan', Auth::user()->datasurvey->kelurahan_desa)
-                ->where('username_user', Auth::user()->username)
+            $survey = DataSurvey::with(['survey'])
+                ->where('kelurahan_desa', Auth::user()->datasurvey->kelurahan_desa)
+                ->whereHas('survey', function($q){
+                    $q->where('username_user', '=', Auth::user()->username);
+                })
                 ->find($id);
         } else if (Auth::user()->jabatan == "Korcab") {
-            $survey = LokasiSurvey::with(['survey'])
+            $survey = DataSurvey::with(['survey'])
                 ->where('kecamatan', Auth::user()->lokasi)
                 ->find($id);
         } else if (Auth::user()->jabatan == "Korkab") {
-            $survey = LokasiSurvey::with(['survey'])
+            $survey = DataSurvey::with(['survey'])
                 ->where('kabupaten', Auth::user()->lokasi)
                 ->find($id);
         }
         return Inertia::render('Survey/Show', [
             'survey' => $survey,
-            'lokasi' => LokasiSurvey::find($id),
+            'lokasi' => DataSurvey::find($id),
             'can' => [
                 'create' => Auth::user()->can('DESA create'),
                 'listkec' => Auth::user()->can('KEC list'),

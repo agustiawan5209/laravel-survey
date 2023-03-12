@@ -21,49 +21,49 @@ class KecamatanSeeder extends Seeder
 
         $kecamatans = array(
             array(
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "nama" => "MARIO RIWAWO",
                 "created_at" => NULL,
                 "updated_at" => NULL,
             ),
             array(
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "nama" => "LALABATA",
                 "created_at" => NULL,
                 "updated_at" => NULL,
             ),
             array(
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "nama" => "LILI RIAJA",
                 "created_at" => NULL,
                 "updated_at" => NULL,
             ),
             array(
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "nama" => "GANRA",
                 "created_at" => NULL,
                 "updated_at" => NULL,
             ),
             array(
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "nama" => "CITTA",
                 "created_at" => NULL,
                 "updated_at" => NULL,
             ),
             array(
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "nama" => "LILI RILAU",
                 "created_at" => NULL,
                 "updated_at" => NULL,
             ),
             array(
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "nama" => "DONRI DONRI",
                 "created_at" => NULL,
                 "updated_at" => NULL,
             ),
             array(
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "nama" => "MARIO RIAWA",
                 "created_at" => NULL,
                 "updated_at" => NULL,

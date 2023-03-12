@@ -16,7 +16,7 @@ class DataSurveySeeder extends Seeder
         $data_surveys = array(
             array(
                 "id" => 1,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "GATTARENG",
                 "jumlah_kk" => "643",
@@ -27,7 +27,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 2,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "MARIO RIAJA",
                 "jumlah_kk" => "1110",
@@ -38,7 +38,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 3,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "WATU",
                 "jumlah_kk" => "884",
@@ -49,7 +49,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 4,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "MARIO RITTENGNGA",
                 "jumlah_kk" => "919",
@@ -60,7 +60,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 5,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "GOARIE",
                 "jumlah_kk" => "1220",
@@ -71,7 +71,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 6,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "BARAE",
                 "jumlah_kk" => "755",
@@ -82,7 +82,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 7,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "MARIO RILAU",
                 "jumlah_kk" => "1008",
@@ -93,7 +93,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 8,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "TETTIKENGRARAE",
                 "jumlah_kk" => "1948",
@@ -104,7 +104,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 9,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "LABESSI",
                 "jumlah_kk" => "841",
@@ -115,7 +115,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 10,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "CONGKO",
                 "jumlah_kk" => "631",
@@ -126,7 +126,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 11,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "WATUTOA",
                 "jumlah_kk" => "961",
@@ -137,7 +137,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 12,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "GATTARENG TOA",
                 "jumlah_kk" => "660",
@@ -148,7 +148,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 13,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIWAWO",
                 "kelurahan_desa" => "SOGA",
                 "jumlah_kk" => "542",
@@ -159,7 +159,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 14,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "UMPUNGENG",
                 "jumlah_kk" => "934",
@@ -170,7 +170,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 15,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "LALABATA RILAU",
                 "jumlah_kk" => "2075",
@@ -181,7 +181,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 16,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "BOTTO",
                 "jumlah_kk" => "1226",
@@ -192,7 +192,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 17,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "LEMBA",
                 "jumlah_kk" => "1024",
@@ -203,7 +203,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 18,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "BILA",
                 "jumlah_kk" => "1921",
@@ -214,7 +214,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 19,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "MATTABULU",
                 "jumlah_kk" => "410",
@@ -225,7 +225,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 20,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "OMPO",
                 "jumlah_kk" => "740",
@@ -236,7 +236,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 21,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "LAPAJUNG",
                 "jumlah_kk" => "1452",
@@ -247,7 +247,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 22,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "MACCILE",
                 "jumlah_kk" => "932",
@@ -258,7 +258,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 23,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LALABATA",
                 "kelurahan_desa" => "SALO KARAJA",
                 "jumlah_kk" => "795",
@@ -269,7 +269,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 24,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RIAJA",
                 "kelurahan_desa" => "TIMUSU",
                 "jumlah_kk" => "1100",
@@ -280,7 +280,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 25,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RIAJA",
                 "kelurahan_desa" => "ROMPEGADING",
                 "jumlah_kk" => "631",
@@ -291,7 +291,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 26,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RIAJA",
                 "kelurahan_desa" => "PATTOJO",
                 "jumlah_kk" => "690",
@@ -302,7 +302,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 27,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RIAJA",
                 "kelurahan_desa" => "GALUNG",
                 "jumlah_kk" => "695",
@@ -313,7 +313,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 28,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RIAJA",
                 "kelurahan_desa" => "JENNAE",
                 "jumlah_kk" => "2192",
@@ -324,7 +324,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 29,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RIAJA",
                 "kelurahan_desa" => "JAMPU",
                 "jumlah_kk" => "734",
@@ -335,7 +335,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 30,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RIAJA",
                 "kelurahan_desa" => "BARANG",
                 "jumlah_kk" => "678",
@@ -346,7 +346,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 31,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RIAJA",
                 "kelurahan_desa" => "APPANANG",
                 "jumlah_kk" => "1140",
@@ -357,7 +357,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 32,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "GANRA",
                 "kelurahan_desa" => "BELO",
                 "jumlah_kk" => "752",
@@ -368,7 +368,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 33,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "GANRA",
                 "kelurahan_desa" => "GANRA",
                 "jumlah_kk" => "925",
@@ -379,7 +379,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 34,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "GANRA",
                 "kelurahan_desa" => "ENREKENG",
                 "jumlah_kk" => "505",
@@ -390,7 +390,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 35,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "GANRA",
                 "kelurahan_desa" => "LOMPULLE",
                 "jumlah_kk" => "888",
@@ -401,7 +401,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 36,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "CITTA",
                 "kelurahan_desa" => "KAMPIRI",
                 "jumlah_kk" => "483",
@@ -412,7 +412,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 37,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "CITTA",
                 "kelurahan_desa" => "CITTA",
                 "jumlah_kk" => "875",
@@ -423,7 +423,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 38,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "CITTA",
                 "kelurahan_desa" => "LABAE",
                 "jumlah_kk" => "515",
@@ -434,7 +434,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 39,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "CITTA",
                 "kelurahan_desa" => "TINCO",
                 "jumlah_kk" => "348",
@@ -445,7 +445,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 40,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "PAJALESANG",
                 "jumlah_kk" => "1299",
@@ -456,7 +456,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 41,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "CABENGE",
                 "jumlah_kk" => "1234",
@@ -467,7 +467,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 42,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "PAROTO",
                 "jumlah_kk" => "677",
@@ -478,7 +478,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 43,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "PALANGISENG",
                 "jumlah_kk" => "681",
@@ -489,7 +489,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 44,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "TETEWATU",
                 "jumlah_kk" => "403",
@@ -500,7 +500,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 45,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "ABBANUANGE",
                 "jumlah_kk" => "910",
@@ -511,7 +511,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 47,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "UJUNG",
                 "jumlah_kk" => "972",
@@ -522,7 +522,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 48,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "MASING",
                 "jumlah_kk" => "716",
@@ -533,7 +533,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 49,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "BARINGENG",
                 "jumlah_kk" => "1535",
@@ -544,7 +544,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 50,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "KEBO",
                 "jumlah_kk" => "815",
@@ -555,7 +555,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 51,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "LILI RILAU",
                 "kelurahan_desa" => "MACANRE",
                 "jumlah_kk" => "757",
@@ -566,7 +566,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 52,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "PESSE",
                 "jumlah_kk" => "676",
@@ -577,7 +577,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 53,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "PISING",
                 "jumlah_kk" => "673",
@@ -588,7 +588,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 54,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "LABOKONG",
                 "jumlah_kk" => "870",
@@ -599,7 +599,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 55,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "DONRI-DONRI",
                 "jumlah_kk" => "711",
@@ -610,7 +610,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 56,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "SERING",
                 "jumlah_kk" => "597",
@@ -621,7 +621,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 57,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "LALABATA RIAJA",
                 "jumlah_kk" => "1012",
@@ -632,7 +632,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 58,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "TOTTONG",
                 "jumlah_kk" => "805",
@@ -643,7 +643,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 59,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "LEWORENG",
                 "jumlah_kk" => "843",
@@ -654,7 +654,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 60,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "DONRI DONRI",
                 "kelurahan_desa" => "KESSING",
                 "jumlah_kk" => "612",
@@ -665,7 +665,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 61,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "PATAMPANUA",
                 "jumlah_kk" => "650",
@@ -676,7 +676,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 62,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "PANINCONG",
                 "jumlah_kk" => "1200",
@@ -687,7 +687,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 63,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "TELLULIMPOE",
                 "jumlah_kk" => "839",
@@ -698,7 +698,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 64,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "ATTANG SALO",
                 "jumlah_kk" => "744",
@@ -709,7 +709,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 65,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "KACA",
                 "jumlah_kk" => "587",
@@ -720,7 +720,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 66,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "LIMPOMAJANG",
                 "jumlah_kk" => "588",
@@ -731,7 +731,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 67,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "BATU-BATU",
                 "jumlah_kk" => "646",
@@ -742,7 +742,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 68,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "MANORANG SALO",
                 "jumlah_kk" => "1217",
@@ -753,7 +753,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 69,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "LARINGGI",
                 "jumlah_kk" => "862",
@@ -764,7 +764,7 @@ class DataSurveySeeder extends Seeder
             ),
             array(
                 "id" => 70,
-                "kabupaten" => "Soppeng",
+                "kabupaten" => "KABUPATEN SOPPENG",
                 "kecamatan" => "MARIO RIAWA",
                 "kelurahan_desa" => "BULUE",
                 "jumlah_kk" => "882",
