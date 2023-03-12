@@ -86,7 +86,7 @@ class SurveyController extends Controller
         $desa = Auth::user()->datasurvey->kelurahan_desa;
         $survey = DataSurvey::where('kabupaten', $kabupaten)
             ->where('kecamatan', $kecamatan)
-            ->where('kelurahan', $kelurahan)
+            ->where('kelurahan_desa', $kelurahan)
             ->first();
         // if ($survey == null) {
         //     $survey = DataSurvey::create([

@@ -40,7 +40,7 @@ function jawaban(value){
                     Kecamatan : {{ lokasi.kecamatan }}
                 </li>
                 <li>
-                    Kelurahan/Desa : {{ lokasi.kelurahan }}
+                    Kelurahan/Desa : {{ lokasi.kelurahan_desa }}
                 </li>
             </ul>
         </template>

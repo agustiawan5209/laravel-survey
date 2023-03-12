@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('lokasi_survey')->constrained('lokasi_surveys')->onDelete('cascade');
+            $table->foreignId('lokasi_survey')->constrained('data_surveys')->onDelete('cascade');
             $table->string('desa');
             $table->string('rt_rw');
             $table->string('tps');
