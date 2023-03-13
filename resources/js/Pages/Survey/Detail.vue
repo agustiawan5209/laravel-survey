@@ -1,10 +1,15 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref, defineProps } from 'vue';
+import Swal from 'sweetalert2';
 
 const props = defineProps({
     data: {
+        type: Object,
+        default: () => ({})
+    },
+    can: {
         type: Object,
         default: () => ({})
     }
@@ -42,6 +47,28 @@ function jawaban2(value) {
     if (value === 'c') hasil = "Tidak Tahu";
 
     return hasil;
+}
+const Form= useForm({});
+
+function Hapus() {
+    Swal.fire({
+        title: 'Apakah Anda Ingin Menghapus Survey?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus Data!'
+    }).then((value) => {
+        if (value.isConfirmed) {
+            Form.delete(route('Survey.delete', {id: props.data.id}))
+        } else {
+            Swal.fire('Dibatalkan')
+        }
+    })
+}
+function back()
+{
+    window.history.back();
 }
 </script>
 
@@ -109,14 +136,14 @@ function jawaban2(value) {
                                 class="px-4 py-2 text-sm font-medium text-white bg-green-500 border border-gray-200 rounded-l-lg hover:bg-green-600  focus:z-10 focus:ring-2 ">
                                 Edit
                             </Link>
-                            <!-- <Link href="Link"
-                                class="px-4 py-2 text-sm font-medium text-white bg-red-500 border-t border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 ">
+                            <button @click="Hapus()" v-if="$page.props.auth.username == data.username_user || can.kecamatanDelete || $page.props.auth.lokasi == data.kecamatan"
+                                class="px-4 py-2 text-sm font-medium text-white bg-red-500 border-t border-b border-gray-200 hover:bg-red-900  focus:z-10 focus:ring-2 ">
                                 Hapus
-                            </Link>
-                            <Link href="Link"
+                            </button>
+                            <button @click="back()"
                                 class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100  focus:z-10 focus:ring-2 ">
                                 Kembali
-                            </Link> -->
+                            </button>
                         </div>
 
                     </div>

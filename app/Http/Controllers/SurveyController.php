@@ -169,6 +169,10 @@ class SurveyController extends Controller
     public function detail($id){
         return Inertia::render('Survey/Detail', [
             'data'=> Survey::with(['lokasisurvey'])->find($id),
+            'can'=> [
+                'relawanDelete'=> Auth::user()->can("DESA delete"),
+                'kecamatanDelete'=> Auth::user()->can("KEC delete"),
+            ]
         ]);
     }
 
@@ -187,7 +191,7 @@ class SurveyController extends Controller
             'lokasi' => $lokasi,
             'can'=> [
                 'relawanView'=> Auth::user()->can('DESA list'),
-                'kecamatanView'=> Auth::user()->can('KEC list')
+                'kecamatanView'=> Auth::user()->can('KEC list'),
             ],
             'kelurahan'=> KelurahanDesa::where('kecamatan', Auth::user()->lokasi)->get(),
         ]);
