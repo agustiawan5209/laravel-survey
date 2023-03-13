@@ -5,6 +5,14 @@ import { ref, defineProps, watch } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import PaginationVue from "@/Components/Pagination.vue";
 import axios from 'axios';
+import Hashids from 'hashids'
+const hashids = new Hashids('', 0, 'abcdefghijklmnopqrstuvwxyz')
+// console.log(hashids.encodeHex("123"))
+function encryptID(value) {
+    var nilai = hashids.encodeHex(value);
+    console.log(nilai);
+    return nilai;
+}
 const props = defineProps({
     can: {
         type: Object,
@@ -94,6 +102,7 @@ function hitungSuaraTidakMendukung(value) {
     }
     return arr.length;
 }
+
 </script>
 
 <template>
@@ -113,11 +122,10 @@ function hitungSuaraTidakMendukung(value) {
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg py-5 px-3">
                         <div class="flex items-center justify-between pb-4">
 
-                            <div >
+                            <div>
                                 <Link :href="route('DataSurvey.create')">
                                 <PrimaryButton id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
-                                    class="!bg-blue-500 active:bg-blue-600 hover:bg-blue-400"
-                                    type="button">
+                                    class="!bg-blue-500 active:bg-blue-600 hover:bg-blue-400" type="button">
                                     Tambah
                                 </PrimaryButton>
                                 </Link>
@@ -216,12 +224,13 @@ function hitungSuaraTidakMendukung(value) {
                                         {{ item.estimasi }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <Link :href="route('DataSurvey.show', { id: item.id })">
+                                        <Link :href="route('DataSurvey.show', { id: item.id, name:item.kabupaten })">
                                         <PrimaryButton type="button"
                                             class="bg-blue-500 hover:bg-blue-600 text-white active:bg-blue-400 focus:bg-blue-700">
                                             Detail</PrimaryButton>
                                         </Link>
-                                        <Link :href="route('DataSurvey.edit', { id: item.id })" v-if="can.adminEdit">
+                                        <Link :href="route('DataSurvey.edit', { id: item.id, name:item.kabupaten })"
+                                            v-if="can.adminEdit">
                                         <PrimaryButton type="button"
                                             class="bg-green-500 hover:bg-green-600 text-white active:bg-green-400 focus:bg-green-700">
                                             Edit</PrimaryButton>

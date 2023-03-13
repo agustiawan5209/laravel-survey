@@ -11,12 +11,19 @@ use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\DataSurvey;
 use App\Models\KelurahanDesa;
+use Vinkla\Hashids\HashidsManager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request;
 
 class DataSurveyController extends Controller
 {
+    protected $hashids;
+    public function __construct()
+    {
+        $this->hashids = new \Hashids\Hashids( env('MY_SECRET_SALT_KEY','MySecretSalt'));
+    }
+
     public function index()
     {
         $user = Auth::user();
@@ -157,6 +164,8 @@ class DataSurveyController extends Controller
 
     public function edit($id)
     {
+        $id = $this->hashids->decode($id)[0];
+
         return Inertia::render('DataSurvey/Edit', [
             'data' => DataSurvey::find($id),
             'can' => [
@@ -166,6 +175,8 @@ class DataSurveyController extends Controller
     }
     public function update($id)
     {
+        $id = $this->hashids->decode($id)[0];
+
         $valid = Request::validate([
             'kabupaten' => 'required|string|max:50',
             'kecamatan' => 'required|string|max:50',
@@ -196,10 +207,13 @@ class DataSurveyController extends Controller
     }
     public function destroy($id)
     {
+        $id = $this->hashids->decode($id)[0];
+
         DataSurvey::find($id)->delete();
     }
     public function show($id)
     {
+        $id = $this->hashids->decode($id)[0];
         $survey = DataSurvey::with(['survey', 'user', 'user.relawan'])
             ->find($id);
 

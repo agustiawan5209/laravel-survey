@@ -55,18 +55,18 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->jabatan == 'Korcab'){
+        if (Auth::user()->jabatan == 'Korcab') {
             $lokasi = Kecamatan::where('nama', Auth::user()->lokasi)->first();
-        }else if(Auth::user()->jabatan == 'Relawan'){
+        } else if (Auth::user()->jabatan == 'Relawan') {
             $lokasi = Auth::user()->datasurvey;
         }
         return Inertia::render('Survey/Form', [
             'lokasi' => $lokasi,
-            'can'=> [
-                'relawanView'=> Auth::user()->can('DESA list'),
-                'kecamatanView'=> Auth::user()->can('KEC list')
+            'can' => [
+                'relawanView' => Auth::user()->can('DESA list'),
+                'kecamatanView' => Auth::user()->can('KEC list')
             ],
-            'kelurahan'=> KelurahanDesa::where('kecamatan', Auth::user()->lokasi)->get(),
+            'kelurahan' => KelurahanDesa::where('kecamatan', Auth::user()->lokasi)->get(),
 
         ]);
     }
@@ -76,7 +76,7 @@ class SurveyController extends Controller
      */
     public function store()
     {
-       $valid = Request::validate([
+        $valid = Request::validate([
             'kabupaten' => 'required|string|max:50',
             'kecamatan' => 'required|string|max:50',
             'kelurahan_desa' => 'required|string|max:50',
@@ -142,7 +142,7 @@ class SurveyController extends Controller
         if (Auth::user()->jabatan == "Relawan") {
             $survey = DataSurvey::with(['survey'])
                 ->where('kelurahan_desa', Auth::user()->datasurvey->kelurahan_desa)
-                ->whereHas('survey', function($q){
+                ->whereHas('survey', function ($q) {
                     $q->where('username_user', '=', Auth::user()->username);
                 })
                 ->find($id);
@@ -166,12 +166,14 @@ class SurveyController extends Controller
             ],
         ]);
     }
-    public function detail($id){
+    public function detail($id)
+    {
+
         return Inertia::render('Survey/Detail', [
-            'data'=> Survey::with(['lokasisurvey'])->find($id),
-            'can'=> [
-                'relawanDelete'=> Auth::user()->can("DESA delete"),
-                'kecamatanDelete'=> Auth::user()->can("KEC delete"),
+            'data' => Survey::with(['lokasisurvey'])->find($id),
+            'can' => [
+                'relawanDelete' => Auth::user()->can("DESA delete"),
+                'kecamatanDelete' => Auth::user()->can("KEC delete"),
             ]
         ]);
     }
@@ -181,19 +183,19 @@ class SurveyController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->jabatan == 'Korcab'){
+        if (Auth::user()->jabatan == 'Korcab') {
             $lokasi = Kecamatan::where('nama', Auth::user()->lokasi)->first();
-        }else if(Auth::user()->jabatan == 'Relawan'){
+        } else if (Auth::user()->jabatan == 'Relawan') {
             $lokasi = Auth::user()->datasurvey;
         }
         return Inertia::render('Survey/Edit', [
-            'data'=> Survey::with(['lokasisurvey'])->find($id),
+            'data' => Survey::with(['lokasisurvey'])->find($id),
             'lokasi' => $lokasi,
-            'can'=> [
-                'relawanView'=> Auth::user()->can('DESA list'),
-                'kecamatanView'=> Auth::user()->can('KEC list'),
+            'can' => [
+                'relawanView' => Auth::user()->can('DESA list'),
+                'kecamatanView' => Auth::user()->can('KEC list'),
             ],
-            'kelurahan'=> KelurahanDesa::where('kecamatan', Auth::user()->lokasi)->get(),
+            'kelurahan' => KelurahanDesa::where('kecamatan', Auth::user()->lokasi)->get(),
         ]);
     }
 
@@ -245,7 +247,6 @@ class SurveyController extends Controller
             'username_user' => Auth::user()->username,
         ]);
         return redirect()->route('Survey.success')->with('success', 'Berhasil Di Edit');;
-
     }
 
     /**
