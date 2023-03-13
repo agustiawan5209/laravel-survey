@@ -150,6 +150,11 @@ class SurveyController extends Controller
             ],
         ]);
     }
+    public function detail($id){
+        return Inertia::render('Survey/Detail', [
+            'data'=> Survey::with(['lokasisurvey'])->find($id),
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.

@@ -1,8 +1,8 @@
 <script setup>
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title} from 'chart.js'
 import { Pie } from 'vue-chartjs';
 import { defineProps } from 'vue';
-ChartJS.register(ArcElement, Tooltip, Legend)
+ChartJS.register(ArcElement, Tooltip, Legend,Title)
 
 const suara = defineProps({
     data: Object,
@@ -27,14 +27,24 @@ function hitungSuaraTidakMendukung(value){
     }
     return arr.length;
 }
+function hitungSuaraBelumMemutuskan(value){
+    var arr = [];
+    for (let i = 0; i < value.length; i++) {
+      if(value[i].pertanyaan2 == 'c'){
+        arr.push(value.pertanyaan2);
+      }
+
+    }
+    return arr.length;
+}
 // variabel Chart
 const chartData = {
-    labels: ['Medukung', 'Tidak Mendukung',],
+    labels: ['Medukung', 'Tidak Mendukung', 'Belum Memutuskan'],
     datasets: [
         {
             label: 'Data Survey',
-            data: [hitungSuaraMendukung(suara.data),hitungSuaraTidakMendukung(suara.data)],
-            backgroundColor: ['#41B883', '#E46651'],
+            data: [hitungSuaraMendukung(suara.data),hitungSuaraTidakMendukung(suara.data), hitungSuaraBelumMemutuskan(suara.data) ],
+            backgroundColor: ['#41B883', '#E46651', "#0080b1"],
         }
     ]
 }

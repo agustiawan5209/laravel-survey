@@ -94,6 +94,9 @@ function jawaban(value){
                                     <th scope="col" class="px-6 py-3 capitalize" v-if="can.admin">
                                         Hasil
                                     </th>
+                                    <th scope="col" class="px-6 py-3 capitalize" v-if="can.admin">
+                                        Detail
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody v-if="survey == null">
@@ -128,6 +131,11 @@ function jawaban(value){
                                     </td>
                                     <td class="px-6 py-4" v-if="can.admin">
                                         {{ jawaban(item.pertanyaan2) }}
+                                    </td>
+                                    <td class="px-6 py-4" >
+                                        <Link :href="route('Survey.detail', {id: item.id})">
+                                            <PrimaryButton type="button">Detail</PrimaryButton>
+                                        </Link>
                                     </td>
                                 </tr>
                             </tbody>

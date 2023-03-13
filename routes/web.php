@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('Buat', 'create')->name('create');
             Route::post('store', 'store')->name('store');
             Route::get('detail/{id}', 'show')->name('show');
+            Route::get('Detail/Survey/{id}', 'detail')->name('detail');
             Route::delete('delete', 'delete')->name('delete');
             Route::get('Edit/{id}', 'edit')->name('edit');
             Route::put('Update/{id}', 'update')->name('update');

@@ -40,6 +40,6 @@ class Survey extends Model
         }
     }
     public function lokasiSurvey(){
-        return $this->hasOne(DataSurvey::class, 'lokasi_survey','id');
+        return $this->hasOne(DataSurvey::class, 'id','lokasi_survey');
     }
 }

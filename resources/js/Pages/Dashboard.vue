@@ -58,14 +58,14 @@ function submit() {
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg w-full text-center flex flex-col justify-center items-center">
 
                         <section class="w-full">
-                            <div class="container px-6 py-16 mx-auto text-center  flex justify-center items-center">
+                            <div class="container px-6 py-2 mx-auto text-center  flex justify-center items-center">
                                 <!-- <img alt="No alt" :src="'image/logo.png'" class="w-52" /> -->
                                 <h1
                                 class="my-4 text-2xl font-extrabold leading-none tracking-tight text-blue-900 md:text-5xl lg:text-4xl dark:text-white ">
                                 FORM PENGGALANGAN HARAPAN</h1>
                             </div>
                           </section>
-                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg w-full px-5 md:px-0 md:w-[500px]">
+                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg w-full px-5 pb-3 md:px-0 md:w-[500px]">
 
                             <BarVue class="w-96" :data="survey" />
                         </div>
