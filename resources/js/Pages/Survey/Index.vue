@@ -66,7 +66,7 @@ function hitungSuaraTidakMendukung(value) {
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg py-5 px-3">
                         <div class="flex items-center justify-between pb-4">
-                            <div v-if="can.create">
+                            <!-- <div v-if="can.create">
                                 <Link :href="route('Survey.create')">
                                 <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
                                     class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
@@ -74,7 +74,7 @@ function hitungSuaraTidakMendukung(value) {
                                     Tambah
                                 </button>
                                 </Link>
-                            </div>
+                            </div> -->
                             <label for="table-search" class="sr-only">Search</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

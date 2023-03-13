@@ -32,12 +32,17 @@ const props = defineProps(['can'])
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('DataSurvey.index')" :active="route().current('DataSurvey.index')">
+                                <NavLink :href="route('DataSurvey.index')" :active="route().current('DataSurvey.index')" v-if="$page.props.auth.user.jabatan !== 'Relawan'">
                                     Data Survey
                                 </NavLink>
                                 <NavLink :href="route('Survey.index')" :active="route().current('Survey.index')">
                                    Laporan Survey
                                 </NavLink>
+
+                                <NavLink :href="route('Survey.create')" :active="route().current('Survey.create')" v-if="$page.props.auth.user.jabatan === 'Relawan'">
+                                   Buat Survey
+                                </NavLink>
+
                             </div>
                         </div>
 

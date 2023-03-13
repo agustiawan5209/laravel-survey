@@ -30,4 +30,7 @@ class DataSurvey extends Model
     public function survey(){
         return $this->hasMany(Survey::class, 'lokasi_survey', 'id');
     }
+    public function user(){
+        return $this->hasMany(User::class, 'datasurvey_id', 'id');
+    }
 }

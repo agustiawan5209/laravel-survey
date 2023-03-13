@@ -4,11 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Relawan;
 use App\Models\KelurahanDesa;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 class KelurahanSeeder extends Seeder
 {
     /**
@@ -520,7 +522,7 @@ class KelurahanSeeder extends Seeder
         for ($i=0; $i < count($kelurahan_desas); $i++) {
             $kel_user = User::create(array(
                 "name" => "kel_".$kelurahan_desas[$i]['nama'],
-                "username" => "kel_".$kelurahan_desas[$i]['nama'],
+                "username" => "user". fake()->unique()->randomNumber(),
                 "email" => "kelurahan". $i ."@gmail.com",
                 "email_verified_at" => NULL,
                 "password"=> bcrypt('12345678'),
@@ -531,6 +533,12 @@ class KelurahanSeeder extends Seeder
                 "updated_at" => "2023-03-07 21:57:00",
             ));
             $kel_user->assignRole($KEL);
+            Relawan::create([
+                'nama'=> fake()->name(),
+                'no_hp'=> fake()->phoneNumber(),
+                'alamat'=> fake()->address(),
+                'user_id'=> $kel_user->id,
+            ]);
         }
     }
 }

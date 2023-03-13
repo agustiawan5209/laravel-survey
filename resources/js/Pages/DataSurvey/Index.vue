@@ -217,10 +217,15 @@ function hitungSuaraTidakMendukung(value) {
                                         {{ item.estimasi }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <Link :href="route('Survey.show', { id: item.id })">
+                                        <Link :href="route('DataSurvey.show', { id: item.id })">
                                         <PrimaryButton type="button"
                                             class="bg-blue-500 hover:bg-blue-600 text-white active:bg-blue-400 focus:bg-blue-700">
                                             Detail</PrimaryButton>
+                                        </Link>
+                                        <Link :href="route('DataSurvey.edit', { id: item.id })" v-if="can.adminEdit">
+                                        <PrimaryButton type="button"
+                                            class="bg-green-500 hover:bg-green-600 text-white active:bg-green-400 focus:bg-green-700">
+                                            Edit</PrimaryButton>
                                         </Link>
                                     </td>
                                 </tr>

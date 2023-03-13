@@ -8,7 +8,8 @@ use App\Models\Kecamatan;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 class KecamatanSeeder extends Seeder
 {
     /**
@@ -79,7 +80,7 @@ class KecamatanSeeder extends Seeder
         for ($i = 0; $i < count($kecamatans); $i++) {
             $kec_user = User::create(array(
                 "name" => "kec_".$kecamatans[$i]['nama'],
-                "username" => "kec_".$kecamatans[$i]['nama'],
+                "username" => "user". fake()->unique()->randomNumber(),
                 "email" => "kecamatan". $i ."@gmail.com",
                 "email_verified_at" => NULL,
                 "password" => bcrypt('12345678'),
