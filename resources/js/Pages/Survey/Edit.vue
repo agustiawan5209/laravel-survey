@@ -18,23 +18,25 @@ const props = defineProps({
         type: Object,
         default: () => ({})
     },
-
-
+    data: {
+        type: Object,
+        default: () => ({})
+    },
 });
 const Form = useForm({
-    kabupaten: "",
-    kecamatan: "",
-    kelurahan_desa: "",
-    nama: "",
-    kepala_keluarga: "",
-    alamat: "",
-    no_hp: "",
-    jumlah_memilih: "",
-    pertanyaan1: "",
-    textpertanyaan1: '',
-    pertanyaan2: "",
-    rt_rw: '',
-    tps: '',
+    kabupaten: props.data.lokasisurvey.kabupaten,
+    kecamatan: props.data.lokasisurvey.kecamatan,
+    kelurahan_desa: props.data.lokasisurvey.kelurahan_desa,
+    nama: props.data.nama,
+    kepala_keluarga: props.data.kepala_keluarga,
+    alamat: props.data.alamat,
+    no_hp: props.data.no_hp,
+    jumlah_memilih: props.data.jumlah_memilih,
+    pertanyaan1: props.data.pertanyaan1,
+    textpertanyaan1: props.data.pertanyaan1,
+    pertanyaan2: props.data.pertanyaan2,
+    rt_rw: props.data.rt_rw,
+    tps: props.data.tps,
 })
 if(props.can.kecamatanView){
     Form.kabupaten = props.lokasi.kabupaten;
@@ -48,7 +50,7 @@ if(props.can.kecamatanView){
 function submit() {
     Swal.fire({
         title: 'Simpan Data',
-        text: 'Ya',
+        text: 'Cek Inputan Sebelumnya',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -56,7 +58,7 @@ function submit() {
         confirmButtonText: 'Ya, Simpan Data!'
     }).then((value) => {
         if (value.isConfirmed) {
-            Form.post(route('Survey.store'))
+            Form.put(route('Survey.update', {id: props.data.id}))
         } else {
             Swal.fire('Dibatalkan')
             console.log('false')
@@ -71,7 +73,7 @@ function submit() {
 
         <Head title="Survey" />
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Isi Survey</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Edit Survey</h2>
             <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400" v-if="can.relawanView" >
                 <li>
                     Kabupaten : {{ props.lokasi.kabupaten }}

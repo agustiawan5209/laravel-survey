@@ -39,7 +39,7 @@ const props = defineProps(['can'])
                                    Laporan Survey
                                 </NavLink>
 
-                                <NavLink :href="route('Survey.create')" :active="route().current('Survey.create')" v-if="$page.props.auth.user.jabatan === 'Relawan'">
+                                <NavLink :href="route('Survey.create')" :active="route().current('Survey.create')" v-if="$page.props.auth.user.jabatan === 'Relawan' || $page.props.auth.user.jabatan === 'Korcab'">
                                    Buat Survey
                                 </NavLink>
 

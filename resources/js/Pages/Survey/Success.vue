@@ -1,7 +1,12 @@
 <script setup>
 import { Link, Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { defineProps } from 'vue';
 
+// const props = defineProps({
+//     message: String,
+// })
+// console.log(message);
 </script>
 
 <template>
@@ -18,7 +23,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
                     </path>
                 </svg>
                 <div class="text-center">
-                    <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Survey Berhasil Disimpan</h3>
+                    <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Survey {{$page.props.flash.success}}</h3>
                     <!-- <p class="text-gray-600 my-2">Thank you for completing your secure online payment.</p> -->
                     <!-- <p> Have a great day! </p> -->
                     <div class="py-10 text-center">

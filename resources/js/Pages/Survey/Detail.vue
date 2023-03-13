@@ -104,11 +104,24 @@ function jawaban2(value) {
                             </div>
                         </dl>
 
-                    </div>
+                        <div class="inline-flex rounded-md shadow-sm" role="group">
+                            <Link :href="route('Survey.edit', {id: data.id})"
+                                class="px-4 py-2 text-sm font-medium text-white bg-green-500 border border-gray-200 rounded-l-lg hover:bg-green-600  focus:z-10 focus:ring-2 ">
+                                Edit
+                            </Link>
+                            <!-- <Link href="Link"
+                                class="px-4 py-2 text-sm font-medium text-white bg-red-500 border-t border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2 ">
+                                Hapus
+                            </Link>
+                            <Link href="Link"
+                                class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100  focus:z-10 focus:ring-2 ">
+                                Kembali
+                            </Link> -->
+                        </div>
 
+                    </div>
 
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
-</template>
+    </AuthenticatedLayout></template>
