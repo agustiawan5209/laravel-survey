@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            DataSurveySeeder::class,
             BasicAdminPermissionSeeder::class,
-            KecamatanSeeder::class,
-            KabupatenSeeder::class,
-            KelurahanSeeder::class,
+            DataSurveySeeder::class,
+            // KecamatanSeeder::class,
+            // KabupatenSeeder::class,
+            // KelurahanSeeder::class,
         ]);
 
     }

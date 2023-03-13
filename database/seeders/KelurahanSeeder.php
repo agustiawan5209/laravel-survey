@@ -514,31 +514,31 @@ class KelurahanSeeder extends Seeder
         );
 
         KelurahanDesa::insert($kelurahan_desas);
-        $KEL = Role::create(['name'=> 'KEL']);
-        $KEL->givePermissionTo('KEL list');
-        $KEL->givePermissionTo('KEL create');
-        $KEL->givePermissionTo('KEL edit');
-        $KEL->givePermissionTo('KEL delete');
-        for ($i=0; $i < count($kelurahan_desas); $i++) {
-            $kel_user = User::create(array(
-                "name" => "kel_".$kelurahan_desas[$i]['nama'],
-                "username" => "user". fake()->unique()->randomNumber(),
-                "email" => "kelurahan". $i ."@gmail.com",
-                "email_verified_at" => NULL,
-                "password"=> bcrypt('12345678'),
-                "lokasi"=> $kelurahan_desas[$i]['nama'],
-                "jabatan"=> "Relawan",
-                "remember_token" => NULL,
-                "created_at" => "2023-03-07 21:57:00",
-                "updated_at" => "2023-03-07 21:57:00",
-            ));
-            $kel_user->assignRole($KEL);
-            Relawan::create([
-                'nama'=> fake()->name(),
-                'no_hp'=> fake()->phoneNumber(),
-                'alamat'=> fake()->address(),
-                'user_id'=> $kel_user->id,
-            ]);
-        }
+        // $KEL = Role::create(['name'=> 'KEL']);
+        // $KEL->givePermissionTo('KEL list');
+        // $KEL->givePermissionTo('KEL create');
+        // $KEL->givePermissionTo('KEL edit');
+        // $KEL->givePermissionTo('KEL delete');
+        // for ($i=0; $i < count($kelurahan_desas); $i++) {
+        //     $kel_user = User::create(array(
+        //         "name" => "kel_".$kelurahan_desas[$i]['nama'],
+        //         "username" => "user". fake()->unique()->randomNumber(),
+        //         "email" => "kelurahan". $i ."@gmail.com",
+        //         "email_verified_at" => NULL,
+        //         "password"=> bcrypt('12345678'),
+        //         "lokasi"=> $kelurahan_desas[$i]['nama'],
+        //         "jabatan"=> "Relawan",
+        //         "remember_token" => NULL,
+        //         "created_at" => "2023-03-07 21:57:00",
+        //         "updated_at" => "2023-03-07 21:57:00",
+        //     ));
+        //     $kel_user->assignRole($KEL);
+        //     Relawan::create([
+        //         'nama'=> fake()->name(),
+        //         'no_hp'=> fake()->phoneNumber(),
+        //         'alamat'=> fake()->address(),
+        //         'user_id'=> $kel_user->id,
+        //     ]);
+        // }
     }
 }

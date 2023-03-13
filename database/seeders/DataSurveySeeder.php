@@ -2,8 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Relawan;
 use App\Models\DataSurvey;
+use App\Models\KelurahanDesa;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DataSurveySeeder extends Seeder
@@ -13,6 +18,8 @@ class DataSurveySeeder extends Seeder
      */
     public function run(): void
     {
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
         $data_surveys = array(
             array(
                 "id" => 1,
@@ -776,5 +783,34 @@ class DataSurveySeeder extends Seeder
         );
 
         DataSurvey::insert($data_surveys);
+        $KEL = Role::create(['name' => 'KEL']);
+        $KEL->givePermissionTo('KEL list');
+        $KEL->givePermissionTo('KEL create');
+        $KEL->givePermissionTo('KEL edit');
+        $KEL->givePermissionTo('KEL delete');
+        for ($i = 0; $i < count($data_surveys); $i++) {
+            for ($k = 0; $k < $data_surveys[$i]['relawan']; $k++) {
+                $kel_user = User::create(array(
+                    "name" => "kel_" . $data_surveys[$i]['kelurahan_desa'],
+                    "username" => "user" . fake()->unique()->randomNumber(),
+                    "email" => "kelurahan" .fake()->unique()->randomNumber() . "@gmail.com",
+                    "email_verified_at" => NULL,
+                    "password" => bcrypt('12345678'),
+                    "lokasi" => $data_surveys[$i]['kelurahan_desa'],
+                    "jabatan" => "Relawan",
+                    "datasurvey_id" => $data_surveys[$i]['id'],
+                    "remember_token" => NULL,
+                    "created_at" => "2023-03-07 21:57:00",
+                    "updated_at" => "2023-03-07 21:57:00",
+                ));
+                $kel_user->assignRole($KEL);
+                Relawan::create([
+                    'nama' => fake()->name(),
+                    'no_hp' => fake()->phoneNumber(),
+                    'alamat' => fake()->address(),
+                    'user_id' => $kel_user->id,
+                ]);
+            }
+        }
     }
 }

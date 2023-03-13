@@ -152,31 +152,31 @@ class BasicAdminPermissionSeeder extends Seeder
         // $kel_user->assignRole($KEL);
 
         // DESA
-        $DESA = Role::create(['name'=> 'DESA']);
-        $DESA->givePermissionTo('DESA list');
-        $DESA->givePermissionTo('DESA create');
-        $DESA->givePermissionTo('DESA edit');
-        $DESA->givePermissionTo('DESA delete');
-        $desa_user = User::create(array(
-            "name" => "Desa",
-            "username" => "Desa",
-            "email" => "Desa@gmail.com",
-            "email_verified_at" => NULL,
-            "password"=> bcrypt('12345678'),
-            "remember_token" => NULL,
-            "jabatan"=> 'Relawan',
-            'lokasi'=> "Gattareng",
-            'datasurvey_id'=> '1',
-            "created_at" => "2023-03-07 21:57:19",
-            "updated_at" => "2023-03-07 21:57:19",
-        ));
-        Relawan::create([
-            'nama'=> $desa_user->name,
-            'no_hp'=> fake()->phoneNumber(),
-            'alamat'=> fake()->address(),
-            'user_id'=> $desa_user->id,
-        ]);
-        $desa_user->assignRole($DESA);
+        // $DESA = Role::create(['name'=> 'DESA']);
+        // $DESA->givePermissionTo('DESA list');
+        // $DESA->givePermissionTo('DESA create');
+        // $DESA->givePermissionTo('DESA edit');
+        // $DESA->givePermissionTo('DESA delete');
+        // $desa_user = User::create(array(
+        //     "name" => "Desa",
+        //     "username" => "Desa",
+        //     "email" => "Desa@gmail.com",
+        //     "email_verified_at" => NULL,
+        //     "password"=> bcrypt('12345678'),
+        //     "remember_token" => NULL,
+        //     "jabatan"=> 'Relawan',
+        //     'lokasi'=> "Gattareng",
+        //     'datasurvey_id'=> '1',
+        //     "created_at" => "2023-03-07 21:57:19",
+        //     "updated_at" => "2023-03-07 21:57:19",
+        // ));
+        // Relawan::create([
+        //     'nama'=> $desa_user->name,
+        //     'no_hp'=> fake()->phoneNumber(),
+        //     'alamat'=> fake()->address(),
+        //     'user_id'=> $desa_user->id,
+        // ]);
+        // $desa_user->assignRole($DESA);
 
 
     }
