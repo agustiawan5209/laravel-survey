@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('lokasi')->nullable();
-            $table->string('datasurvey_id')->nullable();
+            $table->foreignId('datasurvey_id')->nullable();
             $table->string('jabatan')->nullable();
             $table->rememberToken();
             $table->timestamps();

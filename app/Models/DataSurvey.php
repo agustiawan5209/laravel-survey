@@ -42,10 +42,10 @@ class DataSurvey extends Model
      *  Generate Random URL
      * @return void
      */
-    public function getIdAttribute()
-    {
-        $hashids = new \Hashids\Hashids(env('MY_SECRET_SALT_KEY', 'MySecretSalt'));
+    // public function getIdAttribute()
+    // {
+    //     $hashids = new \Hashids\Hashids(env('MY_SECRET_SALT_KEY', 'MySecretSalt'));
 
-        return $hashids->encode($this->attributes['id']);
-    }
+    //     return $hashids->encode($this->attributes['id']);
+    // }
 }

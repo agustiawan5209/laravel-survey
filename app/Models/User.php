@@ -62,4 +62,5 @@ class User extends Authenticatable
     public function kelurahan(){
         return $this->hasOne(KelurahanDesa::class, 'nama', 'lokasi');
     }
+
 }

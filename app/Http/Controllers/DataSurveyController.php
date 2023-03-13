@@ -21,7 +21,7 @@ class DataSurveyController extends Controller
     protected $hashids;
     public function __construct()
     {
-        $this->hashids = new \Hashids\Hashids( env('MY_SECRET_SALT_KEY','MySecretSalt'));
+        $this->hashids = new \Hashids\Hashids(env('MY_SECRET_SALT_KEY', 'MySecretSalt'));
     }
 
     public function index()
@@ -78,7 +78,7 @@ class DataSurveyController extends Controller
             'kabupaten' => 'required|string|max:50',
             'kecamatan' => 'required|string|max:50',
             'kelurahan_desa' => 'required|string|max:50|unique:data_surveys,kelurahan_desa',
-            'jumlah_kk' => 'required|numeric|max:50',
+            'jumlah_kk' => 'required|numeric',
             'estimasi' => 'required|numeric',
             'relawan' => 'required|numeric',
         ]);
@@ -119,30 +119,35 @@ class DataSurveyController extends Controller
                 $kel = KelurahanDesa::create(['kecamatan' => $res['kecamatan'], 'nama' => $res['kelurahan_desa']]);
             }
             $KEL = Role::where(['name' => 'KEL'])->first();
+            if ($KEL == null) {
+                $KEL = Role::create(['name' => 'KEL']);
+            }
             $KEL->givePermissionTo('KEL list');
             $KEL->givePermissionTo('KEL create');
             $KEL->givePermissionTo('KEL edit');
             $KEL->givePermissionTo('KEL delete');
-            $kel_user = User::create(array(
-                "name" => "-------",
-                "username" => "user" . fake()->unique()->randomNumber(),
-                "email" => "kelurahan" . fake()->unique()->randomNumber() . "@gmail.com",
-                "email_verified_at" => NULL,
-                "password" => bcrypt('12345678'),
-                "lokasi" => $kel->nama,
-                "jabatan" => "Relawan",
-                "datasurvey_id" => $data_surveys->id,
-                "remember_token" => NULL,
-                "created_at" => "2023-03-07 21:57:00",
-                "updated_at" => "2023-03-07 21:57:00",
-            ));
-            $kel_user->assignRole($KEL);
-            Relawan::create([
-                'nama' => $kel_user->name,
-                'no_hp' => "000000000",
-                'alamat' => "----------",
-                'user_id' => $kel_user->id,
-            ]);
+            for ($i=0; $i < number_format(Request::input('relawan')); $i++) {
+                $kel_user = User::create(array(
+                    "name" => "-------",
+                    "username" => "user" . fake()->unique()->randomNumber(),
+                    "email" => "kelurahan" . fake()->unique()->randomNumber() . "@gmail.com",
+                    "email_verified_at" => NULL,
+                    "password" => bcrypt('12345678'),
+                    "lokasi" => $kel->nama,
+                    "jabatan" => "Relawan",
+                    "datasurvey_id" => $id = $this->hashids->decode($data_surveys->id)[0],
+                    "remember_token" => NULL,
+                    "created_at" => "2023-03-07 21:57:00",
+                    "updated_at" => "2023-03-07 21:57:00",
+                ));
+                $kel_user->assignRole($KEL);
+                Relawan::create([
+                    'nama' => $kel_user->name,
+                    'no_hp' => "000000000",
+                    'alamat' => "----------",
+                    'user_id' => $kel_user->id,
+                ]);
+            }
         }
 
         return redirect()->route('DataSurvey.index');
@@ -164,7 +169,7 @@ class DataSurveyController extends Controller
 
     public function edit($id)
     {
-        $id = $this->hashids->decode($id)[0];
+        // $id = $this->hashids->decode($id)[0];
 
         return Inertia::render('DataSurvey/Edit', [
             'data' => DataSurvey::find($id),
@@ -175,7 +180,7 @@ class DataSurveyController extends Controller
     }
     public function update($id)
     {
-        $id = $this->hashids->decode($id)[0];
+        // $id = $this->hashids->decode($id)[0];
 
         $valid = Request::validate([
             'kabupaten' => 'required|string|max:50',
@@ -207,13 +212,25 @@ class DataSurveyController extends Controller
     }
     public function destroy($id)
     {
-        $id = $this->hashids->decode($id)[0];
+        // $id = $this->hashids->decode($id)[0];
 
-        DataSurvey::find($id)->delete();
+       $dataSurvey = DataSurvey::find($id);
+       $user = User::where('datasurvey_id', $id)->delete();
+       $dataSurvey->delete();
+
+       return redirect()->route('DataSurvey.success')->with('success', 'Berhasil Di Hapus');
     }
+
+
+    /**
+     * show
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function show($id)
     {
-        $id = $this->hashids->decode($id)[0];
+        // $id = $this->hashids->decode($id)[0];
         $survey = DataSurvey::with(['survey', 'user', 'user.relawan'])
             ->find($id);
 
@@ -233,7 +250,8 @@ class DataSurveyController extends Controller
                 ->where('kabupaten', Auth::user()->lokasi)
                 ->find($id);
         }
-        // dd($survey);
+        $user = User::where('datasurvey_id', $id)->get();
+        // dd($user);
 
         return Inertia::render('DataSurvey/Show', [
             'survey' => $survey,
@@ -290,5 +308,9 @@ class DataSurveyController extends Controller
         $api_kelurahan = "https://www.emsifa.com/api-wilayah-indonesia/api/villages/" . $id . ".json";
         $response = Http::get($api_kelurahan);
         return json_decode($response);
+    }
+    public function success()
+    {
+        return Inertia::render('DataSurvey/Success');
     }
 }

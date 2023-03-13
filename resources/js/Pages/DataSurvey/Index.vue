@@ -224,16 +224,22 @@ function hitungSuaraTidakMendukung(value) {
                                         {{ item.estimasi }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <Link :href="route('DataSurvey.show', { id: item.id, name:item.kabupaten })">
+                                        <Link :href="route('DataSurvey.show', { member: encodeURI(item.estimasi),id: item.id, name: item.kabupaten })">
                                         <PrimaryButton type="button"
                                             class="bg-blue-500 hover:bg-blue-600 text-white active:bg-blue-400 focus:bg-blue-700">
                                             Detail</PrimaryButton>
                                         </Link>
-                                        <Link :href="route('DataSurvey.edit', { id: item.id, name:item.kabupaten })"
+                                        <Link :href="route('DataSurvey.edit', { member: encodeURI(item.estimasi),id: item.id, name: item.kabupaten })"
                                             v-if="can.adminEdit">
                                         <PrimaryButton type="button"
                                             class="bg-green-500 hover:bg-green-600 text-white active:bg-green-400 focus:bg-green-700">
                                             Edit</PrimaryButton>
+                                        </Link>
+                                        <Link :href="route('DataSurvey.delete', { member: encodeURI(item.estimasi),id: item.id, name: item.kabupaten })" method="delete"
+                                            v-if="can.adminEdit">
+                                        <PrimaryButton type="button"
+                                            class="bg-red-500 hover:bg-red-600 text-white active:bg-red-400 focus:bg-red-700">
+                                            Hapus</PrimaryButton>
                                         </Link>
                                     </td>
                                 </tr>

@@ -39,6 +39,11 @@ return [
             'length' => 'your-length-integer',
             // 'alphabet' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
         ],
+        \App\Models\DataSurvey::class => [
+            'salt' => \App\Models\DataSurvey::class.env('APP_KEY'),
+            'length' => 16,
+            'alphabet' => 'abcdefghijklmnopqrstuvwxyz0123456789',
+        ],
 
     ],
 

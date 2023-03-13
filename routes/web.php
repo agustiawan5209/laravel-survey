@@ -53,11 +53,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('Buat', 'create')->name('create');
             Route::post('store', 'store')->name('store');
             Route::get('detail/{id}', 'show')->name('show');
-            Route::delete('delete', 'delete')->name('delete');
+            Route::delete('delete/{id}', 'destroy')->name('delete');
             Route::get('Edit/{id}', 'edit')->name('edit');
             Route::put('Update/{id}', 'update')->name('update');
-
-
+            Route::get('/Success', 'success')->name('success');
         });
     });
 });
