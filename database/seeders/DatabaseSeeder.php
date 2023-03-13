@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BasicAdminPermissionSeeder::class,
             DataSurveySeeder::class,
-            // KecamatanSeeder::class,
-            // KabupatenSeeder::class,
-            // KelurahanSeeder::class,
+            KecamatanSeeder::class,
+            KabupatenSeeder::class,
+            KelurahanSeeder::class,
         ]);
 
     }

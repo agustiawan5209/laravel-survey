@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Inertia\Inertia;
 use GuzzleHttp\Client;
+use App\Models\Relawan;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\DataSurvey;
@@ -17,11 +19,13 @@ class DataSurveyController extends Controller
 {
     public function index()
     {
-        $user = Auth::user()->relawan;
+        $user = Auth::user();
+        // dd($user);
         $survey = DataSurvey::with(['survey'])
             ->filter(Request::only('search', 'kabupaten', 'kecamatan', 'desa'))
             ->paginate(10);
         $kelurahan = KelurahanDesa::filter(Request::only('kecamatan'))->get();
+        // dd($kelurahan);
         // Kondisi Cek Role Relawan
         if (Auth::user()->jabatan == "Relawan") {
             $survey = DataSurvey::with(['survey'])
@@ -45,12 +49,12 @@ class DataSurveyController extends Controller
         return Inertia::render('DataSurvey/Index', [
             'data' => $survey,
             'kabupaten' => Kabupaten::all(),
-            'kecamatan' => KelurahanDesa::filter(Request::only('kabupaten'))->get(),
+            'kecamatan' => Kecamatan::filter(Request::only('kabupaten'))->get(),
             'desa' => $kelurahan,
             'filter' => [
                 'kabupaten' => Request::input('kabupaten'),
                 'kecamatan' => Request::input('kecamatan'),
-                'kabupaten' => Request::input('kabupaten'),
+                'desa' => Request::input('desa'),
             ],
             'can' => [
                 'adminEdit' => Auth::user()->can('Admin edit'),
@@ -72,41 +76,66 @@ class DataSurveyController extends Controller
             'relawan' => 'required|numeric',
         ]);
         if (Auth::user()->jabatan == "Korcab") {
-            DataSurvey::create($valid);
-            $kab = Kabupaten::where('nama', 'like', "%" . $valid['kabupaten'] . "%")->get();
-            if ($kab->count() < 1) {
-                Kabupaten::create(['nama' => $valid['kabupaten']]);
+            $data_surveys = DataSurvey::create($valid);
+            $kab = Kabupaten::where('nama', 'like', "%" . $valid['kabupaten'] . "%")->first();
+            if ($kab == null) {
+                $kab =  Kabupaten::create(['nama' => $valid['kabupaten']]);
             }
             $kec = Kecamatan::where('kabupaten', 'like', "%" . $valid['kabupaten'] . "%")
-                ->where('nama', 'like', "%" . $valid['kecamatan'] . "%")->get();
-            if ($kec->count() < 1) {
-                Kecamatan::create(['kabupaten' => $valid['kabupaten'], 'nama' => $valid['kecamatan']]);
+                ->where('nama', 'like', "%" . $valid['kecamatan'] . "%")->first();
+            if ($kec == null) {
+                $kec = Kecamatan::create(['kabupaten' => $valid['kabupaten'], 'nama' => $valid['kecamatan']]);
             }
 
             $kel = KelurahanDesa::where('kecamatan', 'like', "%" . $valid['kecamatan'] . "%")
-                ->where('nama', 'like', "%" . $valid['kecamatan'] . "%")->get();
-            if ($kel->count() < 1) {
-                KelurahanDesa::create(['kecamatan' => $valid['kecamatan'], 'nama' => $valid['kelurahan_desa']]);
+                ->where('nama', 'like', "%" . $valid['kecamatan'] . "%")->first();
+            if ($kel == null) {
+                $kel = KelurahanDesa::create(['kecamatan' => $valid['kecamatan'], 'nama' => $valid['kelurahan_desa']]);
             }
         } else {
             $res = $this->GetProvinsi(Request::input('kabupaten'), Request::input('kecamatan'), Request::input('kelurahan_desa'), Request::input('jumlah_kk'), Request::input('estimasi'), Request::input('relawan'));
 
-            DataSurvey::create($res);
-            $kab = Kabupaten::where('nama', 'like', "%" . $res['kabupaten'] . "%")->get();
-            if ($kab->count() < 1) {
-                Kabupaten::create(['nama' => $res['kabupaten']]);
+            $data_surveys = DataSurvey::create($res);
+            $kab = Kabupaten::where('nama', 'like', "%" . $res['kabupaten'] . "%")->first();
+            if ($kab == null) {
+                $kab = Kabupaten::create(['nama' => $res['kabupaten']]);
             }
             $kec = Kecamatan::where('kabupaten', 'like', "%" . $res['kabupaten'] . "%")
-                ->where('nama', 'like', "%" . $res['kecamatan'] . "%")->get();
-            if ($kec->count() < 1) {
-                Kecamatan::create(['kabupaten' => $res['kabupaten'], 'nama' => $res['kecamatan']]);
+                ->where('nama', 'like', "%" . $res['kecamatan'] . "%")->first();
+            if ($kec == null) {
+                $kec = Kecamatan::create(['kabupaten' => $res['kabupaten'], 'nama' => $res['kecamatan']]);
             }
 
             $kel = KelurahanDesa::where('kecamatan', 'like', "%" . $res['kecamatan'] . "%")
-                ->where('nama', 'like', "%" . $res['kecamatan'] . "%")->get();
-            if ($kel->count() < 1) {
-                KelurahanDesa::create(['kecamatan' => $res['kecamatan'], 'nama' => $res['kelurahan_desa']]);
+                ->where('nama', 'like', "%" . $res['kecamatan'] . "%")->first();
+            if ($kel == null) {
+                $kel = KelurahanDesa::create(['kecamatan' => $res['kecamatan'], 'nama' => $res['kelurahan_desa']]);
             }
+            $KEL = Role::where(['name' => 'KEL'])->first();
+            $KEL->givePermissionTo('KEL list');
+            $KEL->givePermissionTo('KEL create');
+            $KEL->givePermissionTo('KEL edit');
+            $KEL->givePermissionTo('KEL delete');
+            $kel_user = User::create(array(
+                "name" => "-------",
+                "username" => "user" . fake()->unique()->randomNumber(),
+                "email" => "kelurahan" . fake()->unique()->randomNumber() . "@gmail.com",
+                "email_verified_at" => NULL,
+                "password" => bcrypt('12345678'),
+                "lokasi" => $kel->nama,
+                "jabatan" => "Relawan",
+                "datasurvey_id" => $data_surveys->id,
+                "remember_token" => NULL,
+                "created_at" => "2023-03-07 21:57:00",
+                "updated_at" => "2023-03-07 21:57:00",
+            ));
+            $kel_user->assignRole($KEL);
+            Relawan::create([
+                'nama' => $kel_user->name,
+                'no_hp' => "000000000",
+                'alamat' => "----------",
+                'user_id' => $kel_user->id,
+            ]);
         }
 
         return redirect()->route('DataSurvey.index');
@@ -122,7 +151,7 @@ class DataSurveyController extends Controller
                 'kecamatanView' => Auth::user()->can('KEC list')
             ],
             'user_kecamatan' => User::with(['kabupaten', 'kecamatan', 'relawan', 'kelurahan'])->find(Auth::user()->id),
-            'lokasi'=> Auth::user()->kecamatan
+            'lokasi' => Auth::user()->kecamatan
         ]);
     }
 
