@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Propaganistas\LaravelFakeId\RoutesWithFakeIds;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DataSurvey extends Model
 {
     use HasFactory;
+    use RoutesWithFakeIds;
+
     protected $table = 'data_surveys';
     protected $fillable = ['kabupaten', 'kecamatan', 'kelurahan_desa', 'jumlah_kk', 'estimasi', 'relawan'];
 

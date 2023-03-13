@@ -5,14 +5,8 @@ import { ref, defineProps, watch } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import PaginationVue from "@/Components/Pagination.vue";
 import axios from 'axios';
-import Hashids from 'hashids'
-const hashids = new Hashids('', 0, 'abcdefghijklmnopqrstuvwxyz')
-// console.log(hashids.encodeHex("123"))
-function encryptID(value) {
-    var nilai = hashids.encodeHex(value);
-    console.log(nilai);
-    return nilai;
-}
+import Swal from 'sweetalert2';
+
 const props = defineProps({
     can: {
         type: Object,
@@ -102,7 +96,25 @@ function hitungSuaraTidakMendukung(value) {
     }
     return arr.length;
 }
-
+const deleteForm = useForm({});
+function Hapus(id, kabupaten) {
+    console.log(id)
+    Swal.fire({
+        title: 'Apakah Anda Ingin Menghapus Data Survey?',
+        text: 'Data Relawan Dan Hasil Survey Juga Terhapus!!',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus Data!'
+    }).then((value) => {
+        if (value.isConfirmed) {
+            deleteForm.delete(route('DataSurvey.delete', { id: id }))
+        } else {
+            Swal.fire('Dibatalkan')
+        }
+    })
+}
 </script>
 
 <template>
@@ -224,23 +236,23 @@ function hitungSuaraTidakMendukung(value) {
                                         {{ item.estimasi }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <Link :href="route('DataSurvey.show', { member: encodeURI(item.estimasi),id: item.id, name: item.kabupaten })">
+                                        <Link
+                                            :href="route('DataSurvey.show', { member: encodeURI(item.estimasi), id: item.id, name: item.kabupaten })">
                                         <PrimaryButton type="button"
                                             class="bg-blue-500 hover:bg-blue-600 text-white active:bg-blue-400 focus:bg-blue-700">
                                             Detail</PrimaryButton>
                                         </Link>
-                                        <Link :href="route('DataSurvey.edit', { member: encodeURI(item.estimasi),id: item.id, name: item.kabupaten })"
+                                        <Link
+                                            :href="route('DataSurvey.edit', { member: encodeURI(item.estimasi), id: item.id, name: item.kabupaten })"
                                             v-if="can.adminEdit">
                                         <PrimaryButton type="button"
                                             class="bg-green-500 hover:bg-green-600 text-white active:bg-green-400 focus:bg-green-700">
                                             Edit</PrimaryButton>
                                         </Link>
-                                        <Link :href="route('DataSurvey.delete', { member: encodeURI(item.estimasi),id: item.id, name: item.kabupaten })" method="delete"
-                                            v-if="can.adminEdit">
-                                        <PrimaryButton type="button"
+                                        <PrimaryButton type="button" v-if="can.adminEdit"
+                                            @click="Hapus(item.id, item.kabupaten)"
                                             class="bg-red-500 hover:bg-red-600 text-white active:bg-red-400 focus:bg-red-700">
                                             Hapus</PrimaryButton>
-                                        </Link>
                                     </td>
                                 </tr>
                             </tbody>

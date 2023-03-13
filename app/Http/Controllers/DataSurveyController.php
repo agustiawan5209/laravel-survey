@@ -11,6 +11,7 @@ use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\DataSurvey;
 use App\Models\KelurahanDesa;
+use App\Models\Survey;
 use Vinkla\Hashids\HashidsManager;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -126,7 +127,7 @@ class DataSurveyController extends Controller
             $KEL->givePermissionTo('KEL create');
             $KEL->givePermissionTo('KEL edit');
             $KEL->givePermissionTo('KEL delete');
-            for ($i=0; $i < number_format(Request::input('relawan')); $i++) {
+            for ($i = 0; $i < number_format(Request::input('relawan')); $i++) {
                 $kel_user = User::create(array(
                     "name" => "-------",
                     "username" => "user" . fake()->unique()->randomNumber(),
@@ -135,7 +136,7 @@ class DataSurveyController extends Controller
                     "password" => bcrypt('12345678'),
                     "lokasi" => $kel->nama,
                     "jabatan" => "Relawan",
-                    "datasurvey_id" => $id = $this->hashids->decode($data_surveys->id)[0],
+                    "datasurvey_id" => $data_surveys->id,
                     "remember_token" => NULL,
                     "created_at" => "2023-03-07 21:57:00",
                     "updated_at" => "2023-03-07 21:57:00",
@@ -169,7 +170,7 @@ class DataSurveyController extends Controller
 
     public function edit($id)
     {
-        // $id = $this->hashids->decode($id)[0];
+
 
         return Inertia::render('DataSurvey/Edit', [
             'data' => DataSurvey::find($id),
@@ -180,7 +181,7 @@ class DataSurveyController extends Controller
     }
     public function update($id)
     {
-        // $id = $this->hashids->decode($id)[0];
+
 
         $valid = Request::validate([
             'kabupaten' => 'required|string|max:50',
@@ -212,13 +213,13 @@ class DataSurveyController extends Controller
     }
     public function destroy($id)
     {
-        // $id = $this->hashids->decode($id)[0];
 
-       $dataSurvey = DataSurvey::find($id);
-       $user = User::where('datasurvey_id', $id)->delete();
-       $dataSurvey->delete();
 
-       return redirect()->route('DataSurvey.success')->with('success', 'Berhasil Di Hapus');
+        $dataSurvey = DataSurvey::find($id);
+        $user = User::where('datasurvey_id', $id)->delete();
+        $dataSurvey->delete();
+
+        return redirect()->route('DataSurvey.success')->with('success', 'Berhasil Di Hapus');
     }
 
 
@@ -230,7 +231,7 @@ class DataSurveyController extends Controller
      */
     public function show($id)
     {
-        // $id = $this->hashids->decode($id)[0];
+
         $survey = DataSurvey::with(['survey', 'user', 'user.relawan'])
             ->find($id);
 
@@ -260,6 +261,26 @@ class DataSurveyController extends Controller
                 'create' => Auth::user()->can('DESA create'),
                 'listkec' => Auth::user()->can('KEC list'),
                 'admin' => Auth::user()->can('Admin list'),
+            ],
+        ]);
+    }
+
+    public function ShowDataRelawan($username)
+    {
+        // dd(Survey::where('lokasi_survey', $id)->get());
+        $survey = Survey::with(['lokasiSurvey'])->where('username_user', '=', $username)->get();
+        $user = User::where('username', '=', $username)->first();
+        $dataSurvey = DataSurvey::where('id', $user->datasurvey_id)->first();
+        // dd($dataSurvey);
+        return Inertia::render('DataSurvey/ShowDataRelawan', [
+            'user' => $user,
+            'survey' => $survey,
+            'lokasi' => $dataSurvey,
+            'can' => [
+                'create' => Auth::user()->can('DESA create'),
+                'listkec' => Auth::user()->can('KEC list'),
+                'admin' => Auth::user()->can('Admin list'),
+
             ],
         ]);
     }

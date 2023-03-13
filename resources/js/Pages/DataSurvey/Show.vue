@@ -198,6 +198,9 @@ function showData(value) {
                                     <th scope="col" class="px-6 py-3 capitalize">
                                         Alamat
                                     </th>
+                                    <th scope="col" class="px-6 py-3 capitalize">
+                                        Data Input
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody v-if="survey == null">
@@ -226,6 +229,13 @@ function showData(value) {
                                     <td class="px-6 py-4">
                                         {{ item.relawan.alamat }}
                                     </td>
+
+                                    <td class="px-6 py-4">
+                                        <Link :href="route('DataSurvey.ShowDataRelawan', {username: item.username})">
+                                        <PrimaryButton type="button" >Detail</PrimaryButton>
+                                        </Link>
+                                    </td>
+
                                 </tr>
                             </tbody>
 

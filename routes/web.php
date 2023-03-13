@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('delete/{id}', 'destroy')->name('delete');
             Route::get('Edit/{id}', 'edit')->name('edit');
             Route::put('Update/{id}', 'update')->name('update');
+            Route::get('DataRelawan/{username}', 'ShowDataRelawan')->name('ShowDataRelawan');
             Route::get('/Success', 'success')->name('success');
         });
     });
