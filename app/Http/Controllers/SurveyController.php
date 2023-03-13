@@ -41,7 +41,7 @@ class SurveyController extends Controller
         return Inertia::render('Survey/Index', [
             'survey' => $survey,
             'can' => [
-                'create' => Auth::user()->can('DESA create'),
+                'create' => Auth::user()->can('KEL create'),
                 'listkec' => Auth::user()->can('KEC list'),
                 'admin' => Auth::user()->can('Admin list'),
 
@@ -63,7 +63,7 @@ class SurveyController extends Controller
         return Inertia::render('Survey/Form', [
             'lokasi' => $lokasi,
             'can' => [
-                'relawanView' => Auth::user()->can('DESA list'),
+                'relawanView' => Auth::user()->can('KEL list'),
                 'kecamatanView' => Auth::user()->can('KEC list')
             ],
             'kelurahan' => KelurahanDesa::where('kecamatan', Auth::user()->lokasi)->get(),
@@ -91,6 +91,7 @@ class SurveyController extends Controller
             'textpertanyaan1' => 'string|nullable|max:100',
             'pertanyaan2' => 'required|max:50',
         ]);
+        dd($valid);
         if (Request::input('pertanyaan1') == null && Request::input('textpertanyaan1') == null) {
             Request::validate([
                 'pertanyaan1' => 'required',
@@ -159,7 +160,7 @@ class SurveyController extends Controller
             'survey' => $survey,
             'lokasi' => DataSurvey::find($id),
             'can' => [
-                'create' => Auth::user()->can('DESA create'),
+                'create' => Auth::user()->can('KEL create'),
                 'listkec' => Auth::user()->can('KEC list'),
                 'admin' => Auth::user()->can('Admin list'),
 
@@ -172,7 +173,7 @@ class SurveyController extends Controller
         return Inertia::render('Survey/Detail', [
             'data' => Survey::with(['lokasisurvey'])->find($id),
             'can' => [
-                'relawanDelete' => Auth::user()->can("DESA delete"),
+                'relawanDelete' => Auth::user()->can("KEL delete"),
                 'kecamatanDelete' => Auth::user()->can("KEC delete"),
             ]
         ]);
@@ -192,7 +193,7 @@ class SurveyController extends Controller
             'data' => Survey::with(['lokasisurvey'])->find($id),
             'lokasi' => $lokasi,
             'can' => [
-                'relawanView' => Auth::user()->can('DESA list'),
+                'relawanView' => Auth::user()->can('KEL list'),
                 'kecamatanView' => Auth::user()->can('KEC list'),
             ],
             'kelurahan' => KelurahanDesa::where('kecamatan', Auth::user()->lokasi)->get(),

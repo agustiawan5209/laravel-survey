@@ -258,7 +258,7 @@ class DataSurveyController extends Controller
             'survey' => $survey,
             'lokasi' => DataSurvey::find($id),
             'can' => [
-                'create' => Auth::user()->can('DESA create'),
+                'create' => Auth::user()->can('KEL create'),
                 'listkec' => Auth::user()->can('KEC list'),
                 'admin' => Auth::user()->can('Admin list'),
             ],
@@ -277,7 +277,7 @@ class DataSurveyController extends Controller
             'survey' => $survey,
             'lokasi' => $dataSurvey,
             'can' => [
-                'create' => Auth::user()->can('DESA create'),
+                'create' => Auth::user()->can('KEL create'),
                 'listkec' => Auth::user()->can('KEC list'),
                 'admin' => Auth::user()->can('Admin list'),
 

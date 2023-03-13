@@ -59,10 +59,10 @@ class BasicAdminPermissionSeeder extends Seeder
             'KEL delete',
 
             // Desa
-            'DESA list',
-            'DESA create',
-            'DESA edit',
-            'DESA delete',
+            'KEL list',
+            'KEL create',
+            'KEL edit',
+            'KEL delete',
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
@@ -151,12 +151,12 @@ class BasicAdminPermissionSeeder extends Seeder
         // ));
         // $kel_user->assignRole($KEL);
 
-        // DESA
-        // $DESA = Role::create(['name'=> 'DESA']);
-        // $DESA->givePermissionTo('DESA list');
-        // $DESA->givePermissionTo('DESA create');
-        // $DESA->givePermissionTo('DESA edit');
-        // $DESA->givePermissionTo('DESA delete');
+        // KEL
+        // $KEL = Role::create(['name'=> 'KEL']);
+        // $KEL->givePermissionTo('KEL list');
+        // $KEL->givePermissionTo('KEL create');
+        // $KEL->givePermissionTo('KEL edit');
+        // $KEL->givePermissionTo('KEL delete');
         // $desa_user = User::create(array(
         //     "name" => "Desa",
         //     "username" => "Desa",
@@ -176,7 +176,7 @@ class BasicAdminPermissionSeeder extends Seeder
         //     'alamat'=> fake()->address(),
         //     'user_id'=> $desa_user->id,
         // ]);
-        // $desa_user->assignRole($DESA);
+        // $desa_user->assignRole($KEL);
 
 
     }

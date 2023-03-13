@@ -56,7 +56,9 @@ function submit() {
         confirmButtonText: 'Ya, Simpan Data!'
     }).then((value) => {
         if (value.isConfirmed) {
-            Form.post(route('Survey.store'))
+            Form.post(route('Survey.store'),{
+                onError: error=>console.log(error)
+            })
         } else {
             Swal.fire('Dibatalkan')
             console.log('false')
