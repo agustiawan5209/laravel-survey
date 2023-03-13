@@ -91,7 +91,6 @@ class SurveyController extends Controller
             'textpertanyaan1' => 'string|nullable|max:100',
             'pertanyaan2' => 'required|max:50',
         ]);
-        dd($valid);
         if (Request::input('pertanyaan1') == null && Request::input('textpertanyaan1') == null) {
             Request::validate([
                 'pertanyaan1' => 'required',

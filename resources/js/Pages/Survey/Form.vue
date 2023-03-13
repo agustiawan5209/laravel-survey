@@ -39,7 +39,7 @@ const Form = useForm({
 if(props.can.kecamatanView){
     Form.kabupaten = props.lokasi.kabupaten;
     Form.kecamatan = props.lokasi.nama;
-}else if(props.can.adminView){
+}else if(props.can.relawanView){
     Form.kabupaten = props.lokasi.kabupaten;
     Form.kecamatan = props.lokasi.kecamatan;
     Form.kelurahan_desa = props.lokasi.kelurahan_desa;
