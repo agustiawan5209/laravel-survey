@@ -16,7 +16,7 @@ const props = defineProps({
     can: Object
 
 })
-console.log(props.survey.user)
+console.log(props.survey)
 function jawaban(value) {
     var hasil = null;
     if (value === 'a') hasil = "Mendukung";
@@ -238,3 +238,17 @@ function showData(value) {
         </div>
     </AuthenticatedLayout>
 </template>
+
+<style>
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+</style>

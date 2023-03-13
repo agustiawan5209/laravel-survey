@@ -33,7 +33,6 @@ const props = defineProps({
     },
 
 })
-console.log(props.filter)
 const search = ref('');
 const searchForm = useForm({});
 
@@ -116,11 +115,11 @@ function hitungSuaraTidakMendukung(value) {
 
                             <div >
                                 <Link :href="route('DataSurvey.create')">
-                                <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
-                                    class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                                <PrimaryButton id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
+                                    class="!bg-blue-500 active:bg-blue-600 hover:bg-blue-400"
                                     type="button">
                                     Tambah
-                                </button>
+                                </PrimaryButton>
                                 </Link>
                             </div>
                             <label for="table-search" class="sr-only">Search</label>
@@ -140,7 +139,7 @@ function hitungSuaraTidakMendukung(value) {
                         </div>
                         <div class="flex items-center justify-between pb-2">
                             <div class="flex item-center justify-start">
-                                <div>
+                                <div v-if="can.adminView">
                                     <label for="countries"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
                                         Kabupaten</label>
@@ -150,7 +149,7 @@ function hitungSuaraTidakMendukung(value) {
                                         <option :value="item.nama" v-for="item in kabupaten">{{ item.nama }}</option>
                                     </select>
                                 </div>
-                                <div>
+                                <div v-if="can.adminView">
                                     <label for="countries"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
                                         Kecamatan</label>

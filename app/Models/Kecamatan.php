@@ -16,4 +16,8 @@ class Kecamatan extends Model
             $query->where("kabupaten", 'like', '%'. $filter .'%');
         });
     }
+
+    public function kabupaten(){
+        return $this->hasOne(Kabupaten::class, 'nama','kabupaten');
+    }
 }

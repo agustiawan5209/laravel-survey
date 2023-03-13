@@ -38,6 +38,7 @@ class UserController extends Controller
         return Inertia::render('Dashboard', [
             'can' => [
                 'edit' => Auth::user()->can('Admin edit'),
+                'adminView'=> Auth::user()->can('Admin list')
             ],
             'data' => User::all(),
             'user' => Auth::user(),

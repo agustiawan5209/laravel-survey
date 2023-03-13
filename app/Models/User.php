@@ -53,4 +53,13 @@ class User extends Authenticatable
     public function datasurvey(){
         return $this->hasOne(DataSurvey::class, 'id', 'datasurvey_id');
     }
+    public function kabupaten(){
+        return $this->hasOne(Kabupaten::class, 'nama', 'lokasi');
+    }
+    public function kecamatan(){
+        return $this->hasOne(Kecamatan::class, 'nama', 'lokasi');
+    }
+    public function kelurahan(){
+        return $this->hasOne(KelurahanDesa::class, 'nama', 'lokasi');
+    }
 }

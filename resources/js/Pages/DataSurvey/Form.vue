@@ -2,32 +2,48 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import Swal from 'sweetalert2';
-import { ref, defineProps ,watch} from 'vue';
+import { ref, defineProps, watch } from 'vue';
 import InputError from '@/Components/InputError.vue';
 import axios from 'axios';
 const props = defineProps({
     lokasi: {
         type: Object,
+    },
+    can: {
+        type: Object,
+        default: () => ({})
+    },
+
+    user_kecamatan: {
+        type: Object,
         default: () => ({})
     },
 
 
+
 });
+// console.log(props.lokasi)
 const Form = useForm({
-    kabupaten: "",
-    kecamatan: "",
-    kelurahan_desa: "",
-    jumlah_kk: "",
-    estimasi: "",
-    relawan: '',
-})
+        kabupaten: "",
+        kecamatan: "",
+        kelurahan_desa: "",
+        jumlah_kk: "",
+        estimasi: "",
+        relawan: '',
+    })
+
+
+if (props.can.kecamatanView) {
+   Form.kabupaten = props.user_kecamatan.kecamatan.kabupaten;
+   Form.kecamatan = props.user_kecamatan.kecamatan.nama
+}
 const VarKabupaten = ref(null)
 const VarKecamatan = ref(null)
 
 function submit() {
     Swal.fire({
         title: 'Simpan Data',
-        text: 'Ya',
+        text: 'Cek Inputan Anda Terlebih Dahulu!!',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -73,7 +89,16 @@ watch(VarKecamatan, (value) => {
 
         <Head title="Survey" />
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Isi Survey</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Input Lokasi Data Survey</h2>
+
+            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400" v-if="can.kecamatanView">
+                <li>
+                    Kabupaten : {{ lokasi.kabupaten }}
+                </li>
+                <li>
+                    Kecamatan : {{ lokasi.nama }}
+                </li>
+            </ul>
 
         </template>
         <!-- Content -->
@@ -88,7 +113,7 @@ watch(VarKecamatan, (value) => {
                         <form @submit.prevent="submit">
 
                             <div class="mb-6">
-                                <div>
+                                <div v-if="can.adminView">
                                     <label for="countries"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
                                         Kabupaten</label>
@@ -101,7 +126,7 @@ watch(VarKecamatan, (value) => {
                                 <InputError :message="Form.errors.kabupaten" />
 
                             </div>
-                            <div class="mb-6">
+                            <div class="mb-6" v-if="can.adminView">
                                 <div>
                                     <label for="countries"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
@@ -115,11 +140,11 @@ watch(VarKecamatan, (value) => {
                                 <InputError :message="Form.errors.kecamatan" />
 
                             </div>
-                            <div class="mb-6">
-                                <div>
+                            <!-- Admin View -->
+                            <div class="mb-6" v-if="can.adminView">
+                                <div >
                                     <label for="countries"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
-                                        Kecamatan</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan/Desa</label>
                                     <select id="countries" v-model="Form.kelurahan_desa"
                                         class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
@@ -127,7 +152,17 @@ watch(VarKecamatan, (value) => {
                                     </select>
                                 </div>
                                 <InputError :message="Form.errors.kelurahan_desa" />
-
+                            </div>
+                            <!-- Kecamatan View -->
+                            <div class="mb-6" v-if="can.kecamatanView">
+                                <div >
+                                    <label for="countries"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan/Desa</label>
+                                        <input type="tel" id="tel" v-model="Form.kelurahan_desa"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="....................">
+                                </div>
+                                <InputError :message="Form.errors.kelurahan_desa" />
                             </div>
                             <div class="mb-6">
                                 <label for="kabupaten"

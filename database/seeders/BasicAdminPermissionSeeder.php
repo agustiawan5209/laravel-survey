@@ -2,10 +2,12 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Relawan;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\PermissionRegistrar;
+
 class BasicAdminPermissionSeeder extends Seeder
 {
     /**
@@ -168,6 +170,12 @@ class BasicAdminPermissionSeeder extends Seeder
             "created_at" => "2023-03-07 21:57:19",
             "updated_at" => "2023-03-07 21:57:19",
         ));
+        Relawan::create([
+            'nama'=> $desa_user->name,
+            'no_hp'=> fake()->phoneNumber(),
+            'alamat'=> fake()->address(),
+            'user_id'=> $desa_user->id,
+        ]);
         $desa_user->assignRole($DESA);
 
 
