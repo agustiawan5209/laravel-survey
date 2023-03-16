@@ -153,7 +153,7 @@ function Hapus(id, kabupaten) {
                                     </svg>
                                 </div>
                                 <input type="text" id="table-search" v-model="search"
-                                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-gray-500 focus:border-gray-500 "
                                     placeholder="Masukkan Pencarian">
                             </div>
                         </div>
@@ -192,9 +192,16 @@ function Hapus(id, kabupaten) {
                                     </select>
                                 </div>
                             </div>
+                            <div class="inline-flex rounded-md shadow-sm" role="group">
+
+                                <Link :href="route('Cetak.Index')"
+                                    class="px-4 py-2 text-sm font-medium text-white bg-green-500 border border-green-200 rounded-md hover:bg-green-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                                    Cetak Daftar
+                                </Link>
+                            </div>
                         </div>
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                                 <tr>
                                     <th scope="col" class="p-4">
                                         NO.
@@ -210,6 +217,9 @@ function Hapus(id, kabupaten) {
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
                                         Estimasi
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 capitalize">
+                                        Relawan
                                     </th>
                                     <th scope="col" class="px-6 py-3 capitalize">
                                         Detail
@@ -234,6 +244,9 @@ function Hapus(id, kabupaten) {
                                     </td>
                                     <td class="md:px-6 md:py-4 border border-gray-300 px-3 text-xs md:text-sm">
                                         {{ item.estimasi }}
+                                    </td>
+                                    <td class="md:px-6 md:py-4 border border-gray-300 px-3 text-xs md:text-sm">
+                                        {{ item.relawan }}
                                     </td>
                                     <td class="md:px-6 md:py-4 border border-gray-300 px-3 text-xs md:text-sm">
                                         <Link
@@ -264,5 +277,7 @@ function Hapus(id, kabupaten) {
                 </div>
             </div>
         </div>
+
+
     </AuthenticatedLayout>
 </template>

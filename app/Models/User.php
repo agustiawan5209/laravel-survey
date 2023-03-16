@@ -47,20 +47,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function relawan(){
+    public function relawan()
+    {
         return $this->hasOne(Relawan::class, 'user_id', 'id');
     }
-    public function datasurvey(){
+    public function datasurvey()
+    {
         return $this->hasOne(DataSurvey::class, 'id', 'datasurvey_id');
     }
-    public function kabupaten(){
+    public function kabupaten()
+    {
         return $this->hasOne(Kabupaten::class, 'nama', 'lokasi');
     }
-    public function kecamatan(){
+    public function kecamatan()
+    {
         return $this->hasOne(Kecamatan::class, 'nama', 'lokasi');
     }
-    public function kelurahan(){
+    public function kelurahan()
+    {
         return $this->hasOne(KelurahanDesa::class, 'nama', 'lokasi');
     }
 
+    public function scopeFilterLokasi($query, array $filter)
+    {
+        $query->when($filter['lokasi'] ?? null, function ($query, $lokasi) {
+            $query->where('lokasi', 'like', '%' . $lokasi . '%');
+        });
+        $query->when($filter['dataSurvey_id' ?? null], function ($query, $lokasi) {
+            $query->where('datasurvey_id', 'like', '%' . $lokasi . '%');
+        });
+    }
 }
