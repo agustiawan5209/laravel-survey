@@ -67,7 +67,8 @@ class DataSurveyController extends Controller
             'can' => [
                 'adminEdit' => Auth::user()->can('Admin edit'),
                 'adminView' => Auth::user()->can('Admin list'),
-                'kecamatanView' => Auth::user()->can('KEC list')
+                'kecamatanView' => Auth::user()->can('KEC list'),
+                'kabupatenView'=> Auth::user()->can('KAB list'),
 
             ]
         ]);
@@ -83,7 +84,7 @@ class DataSurveyController extends Controller
             'estimasi' => 'required|numeric',
             'relawan' => 'required|numeric',
         ]);
-        if (Auth::user()->jabatan == "Korcab") {
+        if (Auth::user()->jabatan == "Korcab" || Auth::user()->jabatan == "KorKab") {
             $data_surveys = DataSurvey::create($valid);
             $kab = Kabupaten::where('nama', 'like', "%" . $valid['kabupaten'] . "%")->first();
             if ($kab == null) {
@@ -161,10 +162,12 @@ class DataSurveyController extends Controller
             'can' => [
                 'adminEdit' => Auth::user()->can('Admin edit'),
                 'adminView' => Auth::user()->can('Admin list'),
-                'kecamatanView' => Auth::user()->can('KEC list')
+                'kecamatanView' => Auth::user()->can('KEC list'),
+                'kabupatenView'=> Auth::user()->can('KAB list'),
             ],
             'user_kecamatan' => User::with(['kabupaten', 'kecamatan', 'relawan', 'kelurahan'])->find(Auth::user()->id),
-            'lokasi' => Auth::user()->kecamatan
+            'lokasi' => Auth::user()->kecamatan,
+            'lokasiKabupaten'=> Auth::user()->kabupaten
         ]);
     }
 

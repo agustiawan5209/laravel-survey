@@ -27,15 +27,15 @@ class KabupatenSeeder extends Seeder
             ),
         );
         Kabupaten::insert($kabupatens);
-        $KAB = Role::create(['name' => 'KAB']);
+        $KAB = Role::where(['name' => 'KAB'])->first();
         $KAB->givePermissionTo('KAB list');
         $KAB->givePermissionTo('KAB create');
         $KAB->givePermissionTo('KAB edit');
         $KAB->givePermissionTo('KAB delete');
         $kab_user = User::create(array(
-            "name" => "korcabSoppeng",
-            "username" => "korcabSoppeng",
-            "email" => "korcabSoppeng@gmail.com",
+            "name" => "Kordinator Kabupaten",
+            "username" => "KorKAB",
+            "email" => "KorKAB@gmail.com",
             "email_verified_at" => NULL,
             "password" => bcrypt('12345678'),
             "lokasi" => "KABUPATEN SOPPENG",

@@ -79,7 +79,7 @@ class KecamatanSeeder extends Seeder
         $KEC->givePermissionTo('KEC delete');
         for ($i = 0; $i < count($kecamatans); $i++) {
             $kec_user = User::create(array(
-                "name" => "kec_".$kecamatans[$i]['nama'],
+                "name" => "Kordinator ".$kecamatans[$i]['nama'],
                 "username" => "user". fake()->unique()->randomNumber(),
                 "email" => "kecamatan". $i ."@gmail.com",
                 "email_verified_at" => NULL,

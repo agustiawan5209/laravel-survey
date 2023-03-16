@@ -58,11 +58,6 @@ class BasicAdminPermissionSeeder extends Seeder
             'KEL edit',
             'KEL delete',
 
-            // Desa
-            'KEL list',
-            'KEL create',
-            'KEL edit',
-            'KEL delete',
         ];
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);

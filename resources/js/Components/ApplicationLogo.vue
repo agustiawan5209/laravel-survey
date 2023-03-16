@@ -1,3 +1,3 @@
 <template>
-    <img :src="'image/icons8-name-100.png'"/>
+    <img :src="'../image/icons8-name-100.png'"/>
 </template>

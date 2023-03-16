@@ -9,6 +9,9 @@ const props = defineProps({
     lokasi: {
         type: Object,
     },
+    lokasiKabupaten: {
+        type: Object,
+    },
     can: {
         type: Object,
         default: () => ({})
@@ -36,6 +39,9 @@ const Form = useForm({
 if (props.can.kecamatanView) {
    Form.kabupaten = props.user_kecamatan.kecamatan.kabupaten;
    Form.kecamatan = props.user_kecamatan.kecamatan.nama
+}
+if(props.can.kabupatenView){
+    Form.kabupaten = props.user_kecamatan.kabupaten.nama;
 }
 const VarKabupaten = ref(null)
 const VarKecamatan = ref(null)
@@ -99,6 +105,11 @@ watch(VarKecamatan, (value) => {
                     Kecamatan : {{ lokasi.nama }}
                 </li>
             </ul>
+            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400" v-if="can.kabupatenView">
+                <li>
+                    Kabupaten : {{ lokasiKabupaten.nama }}
+                </li>
+            </ul>
 
         </template>
         <!-- Content -->
@@ -123,8 +134,16 @@ watch(VarKecamatan, (value) => {
                                         <option :value="item.id" v-for="item in getKabupaten">{{ item.name }}</option>
                                     </select>
                                 </div>
+                                <div v-if="can.kabupatenView">
+                                    <div >
+                                        <label for="countries"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kabupaten</label>
+                                            <input type="tel" id="tel" v-model="Form.kabupaten"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="....................">
+                                    </div>
+                                </div>
                                 <InputError :message="Form.errors.kabupaten" />
-
                             </div>
                             <div class="mb-6" v-if="can.adminView">
                                 <div>
@@ -138,7 +157,16 @@ watch(VarKecamatan, (value) => {
                                     </select>
                                 </div>
                                 <InputError :message="Form.errors.kecamatan" />
-
+                            </div>
+                            <div class="mb-6" v-else-if="can.kabupatenView || can.kecamatanView">
+                                <div >
+                                    <label for="countries"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kecamatan</label>
+                                        <input type="tel" id="tel" v-model="Form.kecamatan"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="....................">
+                                </div>
+                                <InputError :message="Form.errors.kecamatan" />
                             </div>
                             <!-- Admin View -->
                             <div class="mb-6" v-if="can.adminView">
@@ -154,7 +182,7 @@ watch(VarKecamatan, (value) => {
                                 <InputError :message="Form.errors.kelurahan_desa" />
                             </div>
                             <!-- Kecamatan View -->
-                            <div class="mb-6" v-if="can.kecamatanView">
+                            <div class="mb-6" v-if="can.kecamatanView || can.kabupatenView">
                                 <div >
                                     <label for="countries"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan/Desa</label>

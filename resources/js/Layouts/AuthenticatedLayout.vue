@@ -103,6 +103,16 @@ const props = defineProps(['can'])
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('DataSurvey.index')" :active="route().current('DataSurvey.index')" v-if="$page.props.auth.user.jabatan !== 'Relawan'">
+                            Data Survey
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('Survey.index')" :active="route().current('Survey.index')">
+                           Laporan Survey
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('Survey.create')" :active="route().current('Survey.create')" v-if="$page.props.auth.user.jabatan === 'Relawan' || $page.props.auth.user.jabatan === 'Korcab'">
+                           Buat Survey
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->

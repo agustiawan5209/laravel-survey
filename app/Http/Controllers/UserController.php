@@ -29,7 +29,7 @@ class UserController extends Controller
                     $modalVar = false;
                 }
             }else{
-                if(Auth::user()->jabatan === 'Korcab' || Auth::user()->jabatan === 'Korkab'){
+                if(Auth::user()->jabatan === 'Korcab' || Auth::user()->jabatan === 'KorKab'){
                     $modalVar = false;
                 }
             }

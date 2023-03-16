@@ -7,6 +7,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import VueSweetalert2 from 'vue-sweetalert2';
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+// const divTag = window.document.getElementsByName('data-page');php artian serve
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
