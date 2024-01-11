@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { defineProps } from 'vue';
 import BarVue from '@/Components/Bar.vue';
+import lineChart from '@/Components/lineChart.vue';
 import Modal from '@/Components/Modal.vue';
 import InputError from '@/Components/InputError.vue';
 const props = defineProps({
@@ -56,9 +57,9 @@ function submit() {
         <div class="md:py-6">
             <div class="max-w-full mx-auto sm:px-1 lg:px-3">
                 <div
-                    class="bg-white overflow-hidden shadow-sm sm:rounded-lg w-1/2 text-center flex flex-col justify-center items-center">
+                    class=" overflow-hidden shadow-sm sm:rounded-lg w-full text-center flex flex-col justify-center items-center gap-2">
 
-                    <section class="w-full">
+                    <section class="w-full bg-white">
                         <div class="container px-6 py-2 mx-auto text-center  flex justify-center items-center">
                             <!-- <img alt="No alt" :src="'image/logo.png'" class="w-52" /> -->
                             <h1
@@ -66,9 +67,15 @@ function submit() {
                                 FORM PENGGALANGAN HARAPAN</h1>
                         </div>
                     </section>
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg w-full px-5 pb-3 md:px-0 md:w-[500px]">
+                    <div class="grid grid-cols-12 gap-4">
+                        <div class="col-span-6 bg-white overflow-hidden shadow-sm sm:rounded-lg w-full px-5 pb-3 md:px-0 md:w-[500px]">
 
-                        <BarVue class="w-96" :data="survey" />
+                            <BarVue class="w-96" :data="survey" />
+                        </div>
+                        <div class="col-span-6 bg-white overflow-hidden shadow-sm sm:rounded-lg w-full px-5 pb-3 md:px-0 md:w-[500px]">
+
+                            <lineChart class="w-96" :data="survey" />
+                        </div>
                     </div>
 
                 </div>

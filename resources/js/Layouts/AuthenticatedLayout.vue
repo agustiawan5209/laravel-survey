@@ -58,7 +58,7 @@ const props = defineProps(['can'])
             <main class="max-w-[77.7rem] ml-0 sm:ml-64 md:ml-64 w-full pl-0">
                 <div class="w-full pl-0">
                     <!-- Page Heading -->
-                    <header class="bg-white shadow" v-if="$slots.header">
+                    <header class="bg-white shadow w-full" v-if="$slots.header">
                         <div class="max-w-full mx-auto flex flex-row justify-between py-6 px-4 sm:px-6 lg:px-8">
                             <div>
                                 <slot name="header" />
