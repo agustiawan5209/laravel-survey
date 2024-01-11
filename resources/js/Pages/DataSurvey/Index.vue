@@ -125,8 +125,8 @@ function Hapus(id, kabupaten) {
         </template>
 
         <!-- Content -->
-        <div class="py-5 md:py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-2 md:py-5">
+            <div class="max-w-full mx-auto sm:px-3 lg:px-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <!-- Table -->
@@ -145,7 +145,7 @@ function Hapus(id, kabupaten) {
                             <label for="table-search" class="sr-only">Search</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    <svg class="w-5 h-5 text-gray-500 " aria-hidden="true"
                                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
@@ -161,30 +161,30 @@ function Hapus(id, kabupaten) {
                             <div class="flex item-center justify-start">
                                 <div v-if="can.adminView">
                                     <label for="countries"
-                                        class="block mb-2 text-xs md:text-sm font-medium text-gray-900 dark:text-white">List
+                                        class="block mb-2 text-xs md:text-sm font-medium text-gray-900 ">List
                                         Kabupaten</label>
                                     <select id="countries" v-model="Kabupaten"
-                                        class="bg-gray-50 px-3 md:px-7 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 px-3 md:px-7 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
 
                                         <option :value="item.nama" v-for="item in kabupaten">{{ item.nama }}</option>
                                     </select>
                                 </div>
                                 <div v-if="can.adminView || can.kabupatenView">
                                     <label for="countries"
-                                        class="block mb-2 text-xs md:text-sm font-medium text-gray-900 dark:text-white">List
+                                        class="block mb-2 text-xs md:text-sm font-medium text-gray-900 ">List
                                         Kecamatan</label>
                                     <select id="countries" v-model="Kecamatan"
-                                        class="bg-gray-50 px-3 md:px-7 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 px-3 md:px-7 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
 
                                         <option :value="item.nama" v-for="item in kecamatan">{{ item.nama }}</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label for="countries"
-                                        class="block mb-2 text-xs md:text-sm font-medium text-gray-900 dark:text-white">List
+                                        class="block mb-2 text-xs md:text-sm font-medium text-gray-900 ">List
                                         Kelurahan/Desa</label>
                                     <select id="countries" v-model="Desa"
-                                        class="bg-gray-50 px-3 md:px-7 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 px-3 md:px-7 border border-gray-300 text-gray-900 text-xs md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
 
                                         <option :value="item.nama" v-for="item in desa" class="text-xs">{{ item.nama }}
                                         </option>
@@ -200,7 +200,7 @@ function Hapus(id, kabupaten) {
                                 </Link>
                             </div>
                         </div>
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500 ">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                                 <tr>
                                     <th scope="col" class="p-4">
@@ -228,12 +228,12 @@ function Hapus(id, kabupaten) {
                             </thead>
                             <tbody>
                                 <tr v-for="(item, index) in data.data" :key="item.id" :index="index"
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    class="bg-white border-b  hover:bg-gray-50 ">
                                     <td class="md:px-6 md:py-4 border border-gray-300 px-3 text-xs md:text-sm">
                                         {{ (data.current_page - 1) * data.per_page + index + 1 }}
                                     </td>
                                     <th scope="row"
-                                        class="md:px-6 md:py-4 border border-gray-300 px-3 text-xs md:text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        class="md:px-6 md:py-4 border border-gray-300 px-3 text-xs md:text-sm font-medium text-gray-900 whitespace-nowrap ">
                                         {{ item.kabupaten }}
                                     </th>
                                     <td class="md:px-6 md:py-4 border border-gray-300 px-3 text-xs md:text-sm">

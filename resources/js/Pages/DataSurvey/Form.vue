@@ -97,7 +97,7 @@ watch(VarKecamatan, (value) => {
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Form Input Lokasi Data Survey</h2>
 
-            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400" v-if="can.kecamatanView">
+            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside " v-if="can.kecamatanView">
                 <li>
                     Kabupaten : {{ lokasi.kabupaten }}
                 </li>
@@ -105,7 +105,7 @@ watch(VarKecamatan, (value) => {
                     Kecamatan : {{ lokasi.nama }}
                 </li>
             </ul>
-            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400" v-if="can.kabupatenView">
+            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside " v-if="can.kabupatenView">
                 <li>
                     Kabupaten : {{ lokasiKabupaten.nama }}
                 </li>
@@ -114,7 +114,7 @@ watch(VarKecamatan, (value) => {
         </template>
         <!-- Content -->
         <div class="py-5 md:py-6">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-full mx-auto sm:px-3 lg:px-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <!-- Table -->
@@ -126,10 +126,10 @@ watch(VarKecamatan, (value) => {
                             <div class="mb-6">
                                 <div v-if="can.adminView">
                                     <label for="countries"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">List
                                         Kabupaten</label>
                                     <select id="countries" v-model="VarKabupaten"
-                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
 
                                         <option :value="item.id" v-for="item in getKabupaten">{{ item.name }}</option>
                                     </select>
@@ -137,9 +137,9 @@ watch(VarKecamatan, (value) => {
                                 <div v-if="can.kabupatenView">
                                     <div >
                                         <label for="countries"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kabupaten</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 ">Kabupaten</label>
                                             <input type="tel" id="tel" v-model="Form.kabupaten"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                             placeholder="....................">
                                     </div>
                                 </div>
@@ -148,10 +148,10 @@ watch(VarKecamatan, (value) => {
                             <div class="mb-6" v-if="can.adminView">
                                 <div>
                                     <label for="countries"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">List
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">List
                                         Kecamatan</label>
                                     <select id="countries" v-model="VarKecamatan"
-                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
 
                                         <option :value="item.id" v-for="item in getKecamatan">{{ item.name }}</option>
                                     </select>
@@ -161,9 +161,9 @@ watch(VarKecamatan, (value) => {
                             <div class="mb-6" v-else-if="can.kabupatenView || can.kecamatanView">
                                 <div >
                                     <label for="countries"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kecamatan</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">Kecamatan</label>
                                         <input type="tel" id="tel" v-model="Form.kecamatan"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                         placeholder="....................">
                                 </div>
                                 <InputError :message="Form.errors.kecamatan" />
@@ -172,9 +172,9 @@ watch(VarKecamatan, (value) => {
                             <div class="mb-6" v-if="can.adminView">
                                 <div >
                                     <label for="countries"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan/Desa</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">Kelurahan/Desa</label>
                                     <select id="countries" v-model="Form.kelurahan_desa"
-                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 px-7 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
 
                                         <option :value="item.id" v-for="item in getKelurahan">{{ item.name }}</option>
                                     </select>
@@ -185,43 +185,43 @@ watch(VarKecamatan, (value) => {
                             <div class="mb-6" v-if="can.kecamatanView || can.kabupatenView">
                                 <div >
                                     <label for="countries"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelurahan/Desa</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">Kelurahan/Desa</label>
                                         <input type="tel" id="tel" v-model="Form.kelurahan_desa"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                         placeholder="....................">
                                 </div>
                                 <InputError :message="Form.errors.kelurahan_desa" />
                             </div>
                             <div class="mb-6">
                                 <label for="kabupaten"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah KK</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Jumlah KK</label>
                                 <input type="tel" id="tel" v-model="Form.jumlah_kk"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="....................">
                                 <InputError :message="Form.errors.jumlah_kk" />
 
                             </div>
                             <div class="mb-6">
                                 <label for="kabupaten"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estimasi
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Estimasi
                                     Rumah</label>
                                 <input type="number" id="tel" v-model="Form.estimasi"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="....................">
                                 <InputError :message="Form.errors.estimasi" />
 
                             </div>
                             <div class="w-1/2">
                                 <label for="kabupaten"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah
+                                    class="block mb-2 text-sm font-medium text-gray-900 ">Jumlah
                                     Relawan</label>
                                 <input type="text" id="kabupaten" v-model="Form.relawan"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                     placeholder="................">
                                 <InputError :message="Form.errors.relawan" />
                             </div>
                             <button type="submit"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Simpan
                                 Survey</button>
                         </form>
 

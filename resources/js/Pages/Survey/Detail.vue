@@ -80,16 +80,16 @@ function back()
         </template>
 
         <!-- Content -->
-        <div class="py-5 md:py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-2 md:py-5">
+            <div class="max-w-full mx-auto sm:px-3 lg:px-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <!-- Table -->
 
                     <div
-                        class="w-full max-w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+                        class="w-full max-w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 ">
 
-                        <dl class="max-w-full text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+                        <dl class="max-w-full text-gray-900 divide-y divide-gray-200 ">
                             <div class="flex flex-col pb-3">
                                 <dt class="mb-1 text-gray-900 font-extrabold md:text-lg">Daerah Survey</dt>
                                 <dd class="text-lg font-normal">Kabupaten : {{ data.lokasisurvey.kabupaten }}</dd>

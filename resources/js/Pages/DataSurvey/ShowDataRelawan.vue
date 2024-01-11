@@ -39,7 +39,7 @@ function back() {
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Jumlah Survey Relawan : {{ user.name }}</h2>
-            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside dark:text-gray-400">
+            <ul class="max-w-md space-y-1 text-gray-500 list-none list-inside ">
                 <li>
                     Kabupaten : {{ lokasi.kabupaten }}
                 </li>
@@ -54,8 +54,8 @@ function back() {
         </template>
 
         <!-- Content -->
-        <div class="py-5 md:py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="py-2 md:py-5">
+            <div class="max-w-full mx-auto sm:px-3 lg:px-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <!-- Table -->
@@ -66,7 +66,7 @@ function back() {
                             <label for="table-search" class="sr-only">Search</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    <svg class="w-5 h-5 text-gray-500 " aria-hidden="true"
                                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
@@ -74,12 +74,12 @@ function back() {
                                     </svg>
                                 </div>
                                 <input type="text" id="table-search"
-                                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
                                     placeholder="Search for items">
                             </div>
                         </div>
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500 ">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                                 <tr>
                                     <th scope="col" class="p-4">
                                         NO.
@@ -109,7 +109,7 @@ function back() {
                             </thead>
                             <tbody v-if="survey == null || survey.length < 1">
                                 <tr
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    class="bg-white border-b  hover:bg-gray-50 ">
                                     <td class="w-4 p-4 text-center" colspan="7">
                                         Data Kosong
                                     </td>
@@ -117,12 +117,12 @@ function back() {
                             </tbody>
                             <tbody v-else>
                                 <tr v-for="(item, index) in survey" :key="item.id" :index="index"
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    class="bg-white border-b  hover:bg-gray-50 ">
                                     <td class="w-4 p-4">
                                         {{ index + 1 }}
                                     </td>
                                     <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                         {{ item.rt_rw }}.{{ item.tps }}
                                     </th>
                                     <td class="px-6 py-4">
